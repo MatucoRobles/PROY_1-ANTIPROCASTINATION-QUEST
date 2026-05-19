@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anti-Procrastination Quest - Custom Michi</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body class="rpg-theme-dark">
+
+    <header class="rpg-navbar">
+        <h1 class="pixel-text-blink">⚔️ Anti-Procrastination Quest ⚔️</h1>
+        <nav class="rpg-nav">
+            <ul>
+                <li><a href="../index.html" class="rpg-nav-link">TABLÓN</a></li>
+                <li><a href="personalizacion.html" class="rpg-nav-link active">TU MICHI</a></li>
+                <li><a href="combate.html" class="rpg-nav-link">ARENA</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="rpg-main-container">
+        
+        <section class="editor-pane" aria-label="Editor de Aspecto">
+            
+            <form id="pet-custom-form" class="rpg-box rpg-form">
+                <h2 class="rpg-box-title">⚙️ CONFIGURAR COMPAÑERO</h2>
+                <p class="rpg-form-group">
+                    <label for="pet-name">> APODO:</label>
+                    <input type="text" id="pet-name" class="pixel-input" maxlength="20" placeholder="Ej: MichiZ">
+                </p>
+                <p class="rpg-form-group">
+                    <label for="pet-type">> RAZA EVOLUTIVA:</label>
+                    <select id="pet-type" class="pixel-select">
+                        <option value="siames">Siamés 🐈 (+ Agilidad/Atk)</option>
+                        <option value="persa">Persa 🐱 (+ Defensa)</option>
+                        <option value="angora">Angora 🤍 (Equilibrado)</option>
+                        <option value="bengala">Bengala 🐯 (+ Puntos de Vida)</option>
+                    </select>
+                </p>
+                <p class="rpg-form-group">
+                    <label for="pet-color">> TINTE DE PELAJE:</label>
+                    <input type="color" id="pet-color" class="pixel-color-picker" value="#f0a500">
+                </p>
+                <button type="submit" class="btn-pixel btn-green block-button">GUARDAR MATRIZ</button>
+            </form>
+
+            <section class="rpg-box live-preview-panel">
+                <h3 class="pixel-heading">PANTALLA DE INSPECCIÓN</h3>
+                <figure id="custom-pet-preview" class="michi-large-display pixel-border-inner">
+                    <span id="pet-body-icon" class="michi-giant-icon">🐈</span>
+                    <span id="equipped-hat-visual" class="pixel-sprite-overlay"></span>
+                    <span id="equipped-weapon-visual" class="pixel-sprite-overlay"></span>
+                </figure>
+                
+                <section class="rpg-stats-summary pixel-border-inner">
+                    <h4>STAT_VALUES</h4>
+                    <ul>
+                        <li>HP_MAX: <span id="detail-hp" class="text-green">100</span></li>
+                        <li>ATK_POWER: <span id="detail-atk" class="text-orange">15</span></li>
+                        <li>DEF_RATING: <span id="detail-def" class="text-blue">12</span></li>
+                    </ul>
+                </section>
+
+                <footer class="rpg-export-container pixel-border-inner">
+                    <button id="btn-export-code" class="btn-pixel btn-blue small">📤 EXPORTAR HASH</button>
+                    <p id="export-output" class="hidden">
+                        <input type="text" id="generated-code" class="pixel-input text-center" readonly>
+                    </p>
+                </footer>
+            </section>
+        </section>
+
+        <section class="inventory-pane" aria-label="Inventario de Objetos">
+            
+            <section class="rpg-box">
+                <h2 class="rpg-box-title">🛡️ EQUIPAMIENTO ACTUAL</h2>
+                <ul class="rpg-slots-wrapper">
+                    <li class="rpg-item-slot pixel-border-inner" data-slot="sombrero">
+                        <span class="slot-title">CABEZA</span>
+                        <span id="slot-sombrero-current" class="slot-status empty">VACÍO</span>
+                    </li>
+                    <li class="rpg-item-slot pixel-border-inner" data-slot="arma">
+                        <span class="slot-title">ARMA</span>
+                        <span id="slot-arma-current" class="slot-status empty">VACÍO</span>
+                    </li>
+                    <li class="rpg-item-slot pixel-border-inner" data-slot="pechera">
+                        <span class="slot-title">PECHO</span>
+                        <span id="slot-pechera-current" class="slot-status empty">VACÍO</span>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="rpg-box">
+                <h2 class="rpg-box-title">🎒 ALMACÉN / INVENTARIO</h2>
+                <ul id="inventory-grid" class="rpg-inventory-grid">
+                    <li class="pixel-subtext text-center">Sin artefactos en la mochila. ¡Completa misiones para farmear equipamiento!</li>
+                </ul>
+            </section>
+        </section>
+
+    </main>
+
+    <script src="../assets/js/customization.js"></script>
+</body>
+</html>
