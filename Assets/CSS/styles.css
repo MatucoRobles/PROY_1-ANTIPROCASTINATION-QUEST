@@ -1,0 +1,516 @@
+/* ==========================================================================
+   1. TIPOGRAFÍA, VARIABLES MEDIEVALES Y RESETEO
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+:root {
+    /* Paleta de colores: Taberna, Mazmorra y Oro */
+    --bg-dark: #1a120b;         /* Madera quemada / Fondo profundo */
+    --box-bg: #2c1e11;          /* Madera de taberna para contenedores */
+    --inner-bg: #150d07;        /* Fondo de inventario / ranuras oscuras */
+    --parchment: #e7d4b4;       /* Color texto principal / Pergamino */
+    --parchment-dim: #b5a285;   /* Texto secundario */
+    
+    /* Colores de interfaz RPG */
+    --gold: #d4af37;            /* Oro viejo para títulos y bordes premium */
+    --hp-red: #a62626;          /* Rojo sangre para la vida */
+    --mana-blue: #29578a;       /* Azul para misiones activas o de maná */
+    --stamina-green: #377a37;   /* Verde para botones de aceptar/completado */
+    
+    /* Fuentes */
+    --font-pixel: 'VT323', monospace;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    image-rendering: pixelated; /* Fuerza aspecto retro de 8-bits */
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--parchment);
+    font-family: var(--font-pixel);
+    font-size: 22px;
+    letter-spacing: 1px;
+    padding-bottom: 40px;
+}
+
+/* ==========================================================================
+   2. BORDES Y CONTENEDORES SEMÁNTICOS (Estilo Madera/Hierro)
+   ========================================================================== */
+/* Se aplica el marco de caja RPG directo a las secciones y formularios contenedores */
+.rpg-box, .rpg-form.rpg-box {
+    background-color: var(--box-bg);
+    padding: 16px;
+    margin-bottom: 20px;
+    position: relative;
+    border: 4px solid #000;
+    box-shadow: 
+        0 4px 0 -4px #000, 
+        0 -4px 0 -4px #000, 
+        4px 0 0 -4px #000, 
+        -4px 0 0 -4px #000,
+        inset 0 0 0 4px var(--gold);
+}
+
+/* Fondos oscuros internos para figuras, tablas o listas */
+.pixel-border-inner {
+    background-color: var(--inner-bg);
+    border: 4px solid #000;
+    padding: 10px;
+}
+
+/* Títulos de Cajas */
+.rpg-box-title, .pixel-heading {
+    color: var(--gold);
+    font-size: 28px;
+    text-shadow: 2px 2px #000;
+    margin-bottom: 12px;
+    border-bottom: 2px dashed var(--parchment-dim);
+    padding-bottom: 4px;
+}
+
+/* Estilos de Elementos de Formulario Nativos */
+.rpg-form-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.pixel-input, .pixel-select {
+    background-color: var(--inner-bg);
+    border: 2px solid var(--parchment-dim);
+    color: var(--parchment);
+    font-family: var(--font-pixel);
+    font-size: 20px;
+    padding: 6px;
+    outline: none;
+}
+
+.pixel-input:focus, .pixel-select:focus {
+    border-color: var(--gold);
+}
+
+.pixel-color-picker {
+    background: none;
+    border: 2px solid var(--parchment-dim);
+    cursor: pointer;
+    width: 50px;
+    height: 40px;
+}
+
+/* ==========================================================================
+   3. BOTONES DE ACCIÓN RETRO (.btn-pixel)
+   ========================================================================== */
+.btn-pixel {
+    font-family: var(--font-pixel);
+    font-size: 22px;
+    padding: 6px 16px;
+    cursor: pointer;
+    border: 4px solid #000;
+    color: #fff;
+    text-shadow: 1px 1px #000;
+    background-color: #555;
+    box-shadow: inset -4px -4px 0px 0px rgba(0,0,0,0.4);
+}
+
+.btn-pixel:active {
+    box-shadow: inset 4px 4px 0px 0px rgba(0,0,0,0.6);
+}
+
+.btn-green  { background-color: var(--stamina-green); }
+.btn-red    { background-color: var(--hp-red); }
+.btn-blue   { background-color: var(--mana-blue); }
+.btn-yellow { background-color: #b08a1a; color: var(--parchment); }
+.btn-pixel.small { padding: 2px 8px; font-size: 18px; }
+.block-button { width: 100%; margin-top: 10px; }
+
+/* ==========================================================================
+   4. ENCABEZADO Y NAVEGACIÓN
+   ========================================================================== */
+.rpg-navbar {
+    background-color: #0f0a06;
+    text-align: center;
+    padding: 15px 10px;
+    border-bottom: 6px double var(--gold);
+}
+
+.rpg-navbar h1 {
+    font-size: 36px;
+    color: var(--gold);
+    text-shadow: 3px 3px #000;
+    margin-bottom: 10px;
+}
+
+.rpg-nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    gap: 15px;
+}
+
+.rpg-nav-link {
+    color: var(--parchment-dim);
+    text-decoration: none;
+    padding: 4px 12px;
+    border: 2px solid transparent;
+}
+
+.rpg-nav-link:hover, .rpg-nav-link.active {
+    color: var(--gold);
+    border: 2px solid var(--gold);
+    background-color: var(--box-bg);
+}
+
+/* ==========================================================================
+   5. MAQUETACIÓN DE PANTALLAS (Layout de Escritorio por columnas)
+   ========================================================================== */
+.rpg-main-container {
+    display: flex;
+    max-width: 1100px;
+    margin: 25px auto;
+    padding: 0 20px;
+    gap: 20px;
+}
+
+/* Comportamiento de las columnas del Tablón */
+.rpg-sidebar { flex: 1; min-width: 300px; }
+.rpg-content-area { flex: 2; }
+
+/* Comportamiento de las columnas de Personalización */
+.editor-pane, .inventory-pane { flex: 1; }
+
+/* Marcos de barras de progreso (HP / Misiones) */
+.rpg-progress-frame {
+    background-color: #000;
+    border: 3px solid var(--parchment-dim);
+    height: 24px;
+    position: relative;
+    margin: 8px 0;
+    display: block;
+}
+
+.rpg-progress-fill {
+    display: block;
+    background-color: var(--mana-blue);
+    height: 100%;
+    transition: width 0.3s ease;
+}
+
+.health-fill {
+    background-color: var(--hp-red);
+}
+
+.pixel-subtext {
+    font-size: 16px;
+    color: var(--parchment-dim);
+}
+
+/* ==========================================================================
+   6. VISTA DEL MICHI Y ESTADÍSTICAS (Estructura Semántica)
+   ========================================================================== */
+/* Reemplazado contenedor genérico por la clase asociada a <figure> */
+.michi-sprite-frame {
+    height: 140px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 70px;
+    margin-bottom: 15px;
+}
+
+.michi-large-display {
+    height: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 90px;
+    position: relative;
+    margin-bottom: 15px;
+}
+
+/* Animación de respiración del gato */
+.idle-animation {
+    animation: breathing 1.2s infinite alternate ease-in-out;
+}
+
+@keyframes breathing {
+    from { transform: scale(1) translateY(0); }
+    to { transform: scale(1.08) translateY(-5px); }
+}
+
+.rpg-stat-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.rpg-stat-table td {
+    padding: 6px;
+    border-bottom: 1px solid #3c2a17;
+}
+
+.rpg-stat-table td:last-child {
+    text-align: right;
+    color: #fff;
+}
+
+/* Capas de equipamiento absoluto sobre el gato */
+.pixel-sprite-overlay {
+    position: absolute;
+    font-size: 35px;
+}
+#equipped-hat-visual { top: 15px; }
+#equipped-weapon-visual { right: 30px; top: 70px; }
+
+.rpg-export-container {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.text-green { color: #5cb85c; }
+.text-orange { color: #f0ad4e; }
+.text-blue { color: #5bc0de; }
+.text-center { text-align: center; }
+
+/* ==========================================================================
+   7. TABLÓN DE QUESTS, PESTAÑAS E INVENTARIO COMPACTO (Listas Libres de Divs)
+   ========================================================================== */
+.quest-board-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* Lista horizontal para las pestañas de filtro */
+.rpg-tabs ul {
+    display: flex;
+    list-style: none;
+    gap: 5px;
+    margin-bottom: 15px;
+}
+
+.tab-item {
+    background: #1f140a;
+    border: 2px solid var(--parchment-dim);
+    color: var(--parchment-dim);
+    font-family: var(--font-pixel);
+    padding: 4px 10px;
+    cursor: pointer;
+}
+
+.tab-item.active {
+    background: var(--gold);
+    color: #000;
+    border-color: #000;
+    font-weight: bold;
+}
+
+/* Tarjeta semántica <article> de misiones individuales */
+.quest-item-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+.quest-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.quest-badge {
+    font-size: 14px;
+    background-color: var(--inner-bg);
+    padding: 2px 6px;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+}
+
+/* Cuadrículas compactas de equipamiento con elementos <li> */
+.rpg-slots-wrapper {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    gap: 10px;            
+    margin: 5px auto;
+}
+
+.rpg-item-slot {
+    width: 70px;          
+    height: 70px;         
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 4px;         
+    font-size: 14px;
+    list-style: none;
+}
+
+.slot-title {
+    font-size: 11px;      
+    color: var(--gold);
+    margin-bottom: 2px;
+}
+
+.slot-status {
+    font-size: 13px;
+    color: var(--parchment-dim);
+}
+
+/* Grilla de la Mochila general */
+.rpg-inventory-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr); 
+    gap: 6px;
+    margin-top: 8px;
+    list-style: none;
+}
+
+.rpg-inventory-grid .rpg-item-slot {
+    width: 55px;          
+    height: 55px;
+}
+
+/* ==========================================================================
+   8. ARENA DE BATALLA (Fiel al Layout enfocado en la pelea)
+   ========================================================================== */
+.battle-layout {
+    display: flex;
+    flex-direction: column; 
+    gap: 15px;
+    max-width: 1000px;
+    margin: 20px auto;
+}
+
+/* Fieldset contenedor de la pantalla de lucha */
+.battlefield-screen {
+    background-color: #111;
+    display: flex;
+    justify-content: space-around; 
+    align-items: center;
+    padding: 40px 20px;            
+    min-height: 320px;             
+    border: 6px double var(--hp-red); 
+    position: relative;
+    box-shadow: inset 0 0 20px rgba(166, 38, 38, 0.3); 
+}
+
+.arena-fighter {
+    text-align: center;
+    width: 40%;
+}
+
+.fighter-tag {
+    font-size: 26px;   
+    color: var(--gold);
+    letter-spacing: 2px;
+}
+
+.fighter-sprite-display {
+    font-size: 110px;  
+    margin: 15px 0;
+}
+
+.versus-shield {
+    font-size: 45px;   
+    color: var(--gold);
+    font-weight: bold;
+    text-shadow: 3px 3px #000;
+}
+
+.arena-action-trigger {
+    text-align: center;
+    margin: 5px 0;
+}
+
+.massive-button {
+    width: 100%;
+    padding: 14px;
+    font-size: 26px;
+    letter-spacing: 2px;
+}
+
+/* Fila inferior adaptada para Buscador y Consola de Log */
+.battle-layout-bottom-row {
+    display: flex;
+    gap: 15px;
+}
+
+.setup-match-box {
+    flex: 1; 
+    margin-bottom: 0; 
+    padding: 12px;
+}
+
+.rpg-input-action-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.rpg-input-action-group .pixel-input { font-size: 16px; padding: 4px; }
+.rpg-input-action-group .btn-pixel { font-size: 18px; padding: 4px; }
+
+.combat-log-card {
+    flex: 1.5; 
+    margin-bottom: 0;
+    padding: 12px;
+}
+
+/* Consola de Log Medieval asociada a <output> */
+.terminal-log-output {
+    display: block;
+    background-color: #000;
+    border: 2px solid #222;
+    padding: 8px;
+    height: 95px; 
+    overflow-y: auto;
+    font-family: monospace;
+    font-size: 14px;
+    color: #0f0; 
+}
+
+/* Estilos de Modales y Utilidades */
+.hidden { display: none !important; }
+
+/* ==========================================================================
+   9. ADAPTACIÓN RESPONSIVE OBLIGATORIA (Media Queries Celulares)
+   ========================================================================== */
+@media (max-width: 768px) {
+    /* Las columnas de escritorio se rompen pasando a filas verticales compactas */
+    .rpg-main-container, .battle-layout-bottom-row {
+        flex-direction: column;
+        padding: 0 10px;
+    }
+    
+    .rpg-sidebar, .rpg-content-area, .setup-match-box, .combat-log-card {
+        width: 100%;
+        min-width: 100%;
+    }
+    
+    .rpg-navbar h1 { font-size: 26px; }
+    .rpg-nav ul { gap: 8px; }
+    .rpg-nav-link { padding: 4px 6px; font-size: 18px; }
+    
+    /* Achicamos la pantalla de pelea para que entre bien en el celu */
+    .battlefield-screen {
+        min-height: 240px;
+        padding: 20px 10px;
+    }
+    .fighter-sprite-display { font-size: 70px; }
+    .fighter-tag { font-size: 20px; }
+    .versus-shield { font-size: 30px; }
+    
+    /* Aumentamos las columnas de la mochila a 5 para que no desborde horizontalmente */
+    .rpg-inventory-grid {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
