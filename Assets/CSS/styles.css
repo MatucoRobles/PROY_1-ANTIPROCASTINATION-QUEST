@@ -548,3 +548,65 @@ body {
         grid-template-columns: repeat(5, 1fr);
     }
 }
+
+
+/* ==========================================================================
+   BARRAS DE PROGRESO (Experiencia y Vida)
+   ========================================================================== */
+.rpg-progress-frame {
+    background-color: var(--inner-bg); /* Fondo oscuro de la taberna */
+    border: 4px solid var(--parchment); /* Borde marrón para que combine */
+    height: 28px;
+    position: relative;
+    margin: 10px 0;
+    width: 100%;
+    /* Sombra interna para que parezca hundido (efecto mazmorra) */
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5); 
+}
+
+.rpg-progress-fill {
+    height: 100%;
+    background-color: var(--stamina-green); 
+    width: 0%; /* Tus compañeros de JS cambiarán este valor */
+    /* Esta transición hace que la barra se llene suavemente, no de golpe */
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1); 
+    /* Brillo superior para darle ese toque 3D de los juegos de 16-bits */
+    box-shadow: inset 0 4px 0 rgba(255, 255, 255, 0.2); 
+}
+
+/* Agrega esta clase cuando la barra llegue al 100% (¡Sube de nivel!) */
+.rpg-progress-fill.level-up {
+    background-color: var(--gold);
+    animation: pulse-glow 1.5s infinite alternate;
+}
+
+@keyframes pulse-glow {
+    from { box-shadow: 0 0 5px var(--gold-glow), inset 0 4px 0 rgba(255, 255, 255, 0.2); }
+    to { box-shadow: 0 0 15px var(--gold), inset 0 4px 0 rgba(255, 255, 255, 0.4); }
+}
+
+/* ==========================================================================
+   ANIMACIÓN DEL MICHI (Respiración e Idle)
+   ========================================================================== */
+.idle-animation {
+    /* Tiempo ajustado a 2s para que parezca que respira relajado */
+    animation: michi-breathing 2s infinite alternate ease-in-out;
+    /* El origen abajo evita que flote raramente, respira desde el piso */
+    transform-origin: bottom center; 
+}
+
+@keyframes michi-breathing {
+    /* Escala ligeramente en Y para simular el pecho inflándose */
+    0% { transform: scaleY(1) scaleX(1) translateY(0); }
+    100% { transform: scaleY(1.03) scaleX(0.98) translateY(-3px); }
+}
+
+/* Efecto hover para las cartas de misiones (Interactividad) */
+.quest-item-card {
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.quest-item-card:hover {
+    transform: translateY(-3px); /* Se levanta un poquito al pasar el mouse */
+    border-color: var(--gold); /* El borde brilla indicando que es clickeable */
+}
