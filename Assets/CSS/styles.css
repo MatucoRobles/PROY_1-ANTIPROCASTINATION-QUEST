@@ -4,30 +4,52 @@
 @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 
 :root {
-    /* Paleta de colores refinada: Taberna, Mazmorra y Oro */
-    --bg-dark: #0f0a06;         /* Más profundo para dar contraste */
-    --box-bg: #2d2116;          /* Madera más clara para que flote sobre el fondo */
-    --inner-bg: #150d07;        /* Fondo de inventario / ranuras oscuras */
-    --parchment: #eecfa1;       /* Pergamino más cálido y legible */
-    --parchment-dim: #9e8a6d;   /* Texto secundario con mejor contraste */
+    /* PALETA "TABERNA DEL GATO DORADO" (Medieval Profundo) */
     
-    /* Colores de interfaz RPG */
-    --gold: #f4d03f;          /* Oro más brillante */
-    --gold-glow: rgba(244, 208, 63, 0.2); /* Resplandor para hover/activos */
-    --hp-red: #a62626;          
-    --mana-blue: #29578a;       
-    --stamina-green: #377a37;   
+    /* El fondo base es un "marrón tierra de mazmorra" muy oscuro, 
+       casi negro pero con calidez terrosa */
+    --bg-dark: #181a16;         
     
-    /* Rarezas de Ítems (NUEVO) */
-    --rare-common: #a0a0a0;
-    --rare-magic: #3b82f6;
-    --rare-epic: #a855f7;
-    --rare-legendary: #eab308;
+    /* Las cajas principales usarán un "marrón madera de castaño" oscuro.
+       Sigue siendo oscuro, pero tiene la calidez suficiente para 
+       complementar los naranjas del gato */
+    --box-bg: #3b291a;          
+    
+    /* Las ranuras oscuras (inventario/inputs) serán "marrón carbón" profundo */
+    --inner-bg: #23180f;        
+    
+    /* El texto principal será un "pergamino envejecido y ahumado".
+       Es brillante para leer, pero tiene un tono cálido y apagado, 
+       nada de blanco molesto */
+    --parchment: #e8dbbf;       
+    
+    /* Texto secundario en un "marrón tabaco" apagado */
+    --parchment-dim: #aa9d83;   
+    
+    /* ACENTOS DE INTERFAZ RPG (Coherencia Total con el Michi) */
+    
+    /* Usaremos el naranja del gato (#F28A2E) como "oro viejo" para títulos 
+       y bordes premium. Esto hace que el gato "se extienda" a la UI */
+    --gold: #F28A2E;            
+    --gold-glow: rgba(242, 138, 46, 0.3); 
+    
+    /* Salud (Rojo exacto del gato) */
+    --hp-red: #F24C3D;          
+    
+    /* Maná (Azul "noche en el bosque" profundo, no pastel) */
+    --mana-blue: #3a5f78;       
+    
+    /* Estamina/Completado (Verde "copa de pino" rico y oscuro) */
+    --stamina-green: #597a44;   
+    
+    /* Rarezas (Adaptadas a tonos medievales) */
+    --rare-magic: #4a7791;     /* Azul mineral */
+    --rare-epic: #7a548c;      /* Amatista oscura */
+    --rare-legendary: #b38d33; /* Oro envejecido */
 
     /* Fuentes */
     --font-pixel: 'VT323', monospace;
 }
-
 * {
     box-sizing: border-box;
     margin: 0;
