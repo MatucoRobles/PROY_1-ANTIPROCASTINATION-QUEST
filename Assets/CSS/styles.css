@@ -222,6 +222,11 @@ body {
     margin-bottom: 15px;
 }
 
+.michi-sprite {
+    max-height: 120px;
+    width: auto;
+}
+
 .michi-large-display {
     height: 180px;
     display: flex;
