@@ -610,3 +610,57 @@ body {
     transform: translateY(-3px); /* Se levanta un poquito al pasar el mouse */
     border-color: var(--gold); /* El borde brilla indicando que es clickeable */
 }
+
+/* ==========================================================================
+   ESTADOS DE LAS MISIONES (Desafío Obligatorio)
+   ========================================================================== */
+
+/* 1. Misión Pendiente (Grisácea y opaca, esperando a ser iniciada) */
+.mision-pendiente {
+    opacity: 0.7;
+    border-color: var(--parchment-dim);
+    background-color: var(--box-bg);
+    filter: grayscale(30%); /* Le quita un poco de color para que se vea "inactiva" */
+}
+
+/* 2. Misión Activa (Brillante, en progreso) */
+.mision-activa {
+    opacity: 1;
+    border-color: var(--gold);
+    background-color: var(--box-bg);
+    box-shadow: inset 0 0 10px var(--gold-glow); /* Resplandor interno dorado */
+}
+
+/* 3. Misión Completada (Verde, apagada y con texto tachado) */
+.mision-completada {
+    opacity: 0.6;
+    border-color: var(--stamina-green);
+    background-color: var(--inner-bg); /* Fondo más oscuro para enviarla "al fondo" */
+}
+
+.mision-completada .quest-title {
+    text-decoration: line-through;
+    color: var(--parchment-dim);
+}
+
+/* Insignias (Badges) visuales para acompañar cada carta de misión */
+.badge-estado {
+    padding: 2px 8px;
+    font-size: 14px;
+    text-transform: uppercase;
+    border: 1px solid;
+}
+
+.badge-pendiente { 
+    color: var(--parchment-dim); 
+    border-color: var(--parchment-dim); 
+}
+.badge-activa { 
+    color: var(--gold); 
+    border-color: var(--gold); 
+    background-color: rgba(242, 138, 46, 0.1); 
+}
+.badge-completada { 
+    color: var(--stamina-green); 
+    border-color: var(--stamina-green); 
+}
