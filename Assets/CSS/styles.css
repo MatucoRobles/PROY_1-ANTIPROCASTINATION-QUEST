@@ -4,19 +4,26 @@
 @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 
 :root {
-    /* Paleta de colores: Taberna, Mazmorra y Oro */
-    --bg-dark: #1a120b;         /* Madera quemada / Fondo profundo */
-    --box-bg: #2c1e11;          /* Madera de taberna para contenedores */
+    /* Paleta de colores refinada: Taberna, Mazmorra y Oro */
+    --bg-dark: #0f0a06;         /* Más profundo para dar contraste */
+    --box-bg: #2d2116;          /* Madera más clara para que flote sobre el fondo */
     --inner-bg: #150d07;        /* Fondo de inventario / ranuras oscuras */
-    --parchment: #e7d4b4;       /* Color texto principal / Pergamino */
-    --parchment-dim: #b5a285;   /* Texto secundario */
+    --parchment: #eecfa1;       /* Pergamino más cálido y legible */
+    --parchment-dim: #9e8a6d;   /* Texto secundario con mejor contraste */
     
     /* Colores de interfaz RPG */
-    --gold: #d4af37;            /* Oro viejo para títulos y bordes premium */
-    --hp-red: #a62626;          /* Rojo sangre para la vida */
-    --mana-blue: #29578a;       /* Azul para misiones activas o de maná */
-    --stamina-green: #377a37;   /* Verde para botones de aceptar/completado */
+    --gold: #f4d03f;          /* Oro más brillante */
+    --gold-glow: rgba(244, 208, 63, 0.2); /* Resplandor para hover/activos */
+    --hp-red: #a62626;          
+    --mana-blue: #29578a;       
+    --stamina-green: #377a37;   
     
+    /* Rarezas de Ítems (NUEVO) */
+    --rare-common: #a0a0a0;
+    --rare-magic: #3b82f6;
+    --rare-epic: #a855f7;
+    --rare-legendary: #eab308;
+
     /* Fuentes */
     --font-pixel: 'VT323', monospace;
 }
