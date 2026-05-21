@@ -663,4 +663,99 @@ body {
 .badge-completada { 
     color: var(--stamina-green); 
     border-color: var(--stamina-green); 
+} 
+
+/* ==========================================================================
+   ADAPTACIÓN RESPONSIVE OBLIGATORIA (Mobile First / Media Queries)
+   ========================================================================== */
+
+/* Punto de quiebre para Tablets y Celulares (Máximo 768px de ancho).
+   Aquí pasamos de diseños en columnas a diseños en filas (apilados).
+*/
+@media (max-width: 768px) {
+    /* 1. Ajustes del Layout Principal */
+    .rpg-main-container, .battle-layout-bottom-row {
+        flex-direction: column;
+        padding: 0 10px;
+        gap: 15px; /* Reducimos el espacio entre elementos */
+    }
+    
+    /* Las columnas laterales ahora ocupan todo el ancho disponible */
+    .rpg-sidebar, .rpg-content-area, .setup-match-box, .combat-log-card, .editor-pane, .inventory-pane {
+        width: 100%;
+        min-width: 100%;
+        flex: none; /* Quitamos la proporción de escritorio */
+    }
+    
+    /* 2. Ajustes de la Navegación (Header) */
+    .rpg-navbar h1 { 
+        font-size: 26px; /* Título más pequeño para que no desborde */
+    }
+    
+    .rpg-nav ul { 
+        flex-direction: column; /* Apilamos los links de navegación */
+        gap: 8px; 
+    }
+    
+    .rpg-nav-link { 
+        display: block;
+        padding: 8px; 
+        font-size: 20px; 
+        background-color: var(--inner-bg); /* Fondo sutil para que parezcan botones */
+    }
+
+    /* 3. Ajustes de la Arena de Batalla */
+    .battlefield-screen {
+        min-height: 240px;
+        padding: 20px 10px;
+        flex-direction: column; /* Apilamos a los luchadores uno sobre otro */
+        gap: 20px;
+    }
+    
+    .arena-fighter {
+        width: 100%; /* Cada michi ocupa todo el ancho */
+    }
+    
+    .fighter-sprite-display { 
+        font-size: 70px; /* Reducimos el tamaño del sprite para mobile */
+    }
+    
+    .fighter-tag { 
+        font-size: 20px; 
+    }
+    
+    .versus-shield { 
+        font-size: 30px; 
+        margin: 10px 0; /* Espaciado alrededor del "VS" */
+    }
+    
+    /* 4. Ajustes del Inventario y Cartas */
+    /* Modificamos el Grid para que no se aprieten demasiado los ítems */
+    .rpg-inventory-grid {
+        grid-template-columns: repeat(4, 1fr); /* 4 columnas en lugar de 6 en mobile */
+        gap: 8px;
+    }
+    
+    .quest-item-card {
+        flex-direction: column; /* Apilamos el título y los badges de la misión */
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .quest-info {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+/* Punto de quiebre para Celulares muy pequeños (Máximo 480px)
+*/
+@media (max-width: 480px) {
+    .rpg-inventory-grid {
+        grid-template-columns: repeat(3, 1fr); /* Solo 3 columnas para pantallas mínimas */
+    }
+    
+    .rpg-box {
+        padding: 10px; /* Reducimos el relleno de las cajas para ganar espacio */
+    }
 }
