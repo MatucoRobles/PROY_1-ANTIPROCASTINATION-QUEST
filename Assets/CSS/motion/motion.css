@@ -1,0 +1,8 @@
+@keyframes pulse-glow {
+    from {
+        box-shadow: 0 0 5px var(--gold-glow), inset 0 4px 0 rgba(255, 255, 255, 0.2);
+    }
+    to {
+        box-shadow: 0 0 15px var(--gold), inset 0 4px 0 rgba(255, 255, 255, 0.4);
+    }
+}

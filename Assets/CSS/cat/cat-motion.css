@@ -1,0 +1,22 @@
+.idle-animation {
+    animation: michi-breathing var(--duration-idle) infinite alternate ease-in-out;
+    transform-origin: bottom center;
+}
+
+@keyframes michi-breathing {
+    0% {
+        transform: scaleY(1) scaleX(1) translateY(0);
+    }
+    100% {
+        transform: scaleY(1.03) scaleX(0.98) translateY(-3px);
+    }
+}
+
+@keyframes breathing {
+    from {
+        transform: scale(1) translateY(0);
+    }
+    to {
+        transform: scale(1.08) translateY(-5px);
+    }
+}

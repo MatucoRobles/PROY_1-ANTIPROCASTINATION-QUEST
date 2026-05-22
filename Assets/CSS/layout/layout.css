@@ -1,0 +1,188 @@
+.rpg-main-container {
+    display: flex;
+    max-width: var(--container-max-width);
+    margin: var(--space-2xl) auto;
+    padding: 0 var(--space-xl);
+    gap: var(--space-xl);
+}
+
+.rpg-sidebar {
+    flex: 1;
+    min-width: 300px;
+}
+
+.rpg-content-area {
+    flex: 2;
+}
+
+.editor-pane,
+.inventory-pane {
+    flex: 1;
+}
+
+.rpg-navbar {
+    background-color: #0f0a06;
+    text-align: center;
+    padding: var(--space-base) var(--space-sm);
+    border-bottom: var(--border-width-xl) double var(--gold);
+}
+
+.rpg-navbar h1 {
+    font-size: var(--font-size-xl);
+    color: var(--gold);
+    text-shadow: var(--shadow-text-lg);
+    margin-bottom: var(--space-sm);
+}
+
+.rpg-nav ul {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-base);
+}
+
+.battle-layout {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-base);
+    max-width: var(--container-max-width-battle);
+    margin: var(--space-xl) auto;
+}
+
+.battlefield-screen {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: var(--space-3xl) var(--space-xl);
+    min-height: 320px;
+    position: relative;
+}
+
+.arena-fighter {
+    text-align: center;
+    width: 40%;
+}
+
+.versus-shield {
+    font-size: 45px;
+    font-weight: bold;
+    color: var(--gold);
+    text-shadow: var(--shadow-text-lg);
+}
+
+.arena-action-trigger {
+    text-align: center;
+    margin: var(--space-xs) 0;
+}
+
+.battle-layout-bottom-row {
+    display: flex;
+    gap: var(--space-base);
+}
+
+.setup-match-box {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+.rpg-input-action-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    margin-top: var(--space-sm);
+}
+
+.combat-log-card {
+    flex: 1.5;
+    margin-bottom: 0;
+}
+
+.terminal-log-output {
+    display: block;
+    height: 95px;
+    overflow-y: auto;
+    font-family: monospace;
+    font-size: var(--font-size-xs);
+    color: var(--color-terminal-green);
+}
+
+.rpg-export-container {
+    margin-top: var(--space-base);
+    text-align: center;
+}
+
+.quest-board-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-sm);
+}
+
+.rpg-tabs ul {
+    display: flex;
+    gap: var(--space-xs);
+    margin-bottom: var(--space-base);
+}
+
+.rpg-slots-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-sm);
+    margin: var(--space-xs) auto;
+}
+
+.rpg-inventory-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: var(--space-sm);
+    margin-top: var(--space-sm);
+}
+
+@media (max-width: 768px) {
+    .rpg-main-container,
+    .battle-layout-bottom-row {
+        flex-direction: column;
+        padding: 0 var(--space-sm);
+    }
+
+    .rpg-sidebar,
+    .rpg-content-area,
+    .setup-match-box,
+    .combat-log-card {
+        width: 100%;
+        min-width: 100%;
+    }
+
+    .rpg-navbar h1 {
+        font-size: 26px;
+    }
+
+    .rpg-nav ul {
+        gap: var(--space-sm);
+    }
+
+    .rpg-nav-link {
+        padding: var(--space-xs) var(--space-sm);
+        font-size: var(--font-size-sm);
+    }
+
+    .battlefield-screen {
+        min-height: 240px;
+        padding: var(--space-xl) var(--space-sm);
+    }
+
+    .fighter-sprite-display {
+        font-size: 70px;
+    }
+
+    .fighter-tag {
+        font-size: 20px;
+    }
+
+    .versus-shield {
+        font-size: 30px;
+    }
+
+    .rpg-inventory-grid {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}

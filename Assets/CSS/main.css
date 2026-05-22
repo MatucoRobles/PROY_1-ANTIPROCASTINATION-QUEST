@@ -1,0 +1,11 @@
+@layer reset, tokens, preferences, base, layout, components, cat, motion;
+
+@import url('./tokens/tokens.css') layer(tokens);
+@import url('./core/reset.css') layer(reset);
+@import url('./core/preferences.css') layer(preferences);
+@import url('./core/base.css') layer(base);
+@import url('./layout/layout.css') layer(layout);
+@import url('./components/components.css') layer(components);
+@import url('./cat/cat.css') layer(cat);
+@import url('./cat/cat-motion.css') layer(motion);
+@import url('./motion/motion.css') layer(motion);

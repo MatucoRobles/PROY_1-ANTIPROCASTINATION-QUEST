@@ -1,0 +1,263 @@
+.rpg-box,
+.rpg-form.rpg-box {
+    background-color: var(--box-bg);
+    padding: var(--space-lg);
+    margin-bottom: var(--space-xl);
+    position: relative;
+    border: var(--border-width-lg) solid var(--color-black);
+    box-shadow:
+        0 4px 0 -4px var(--color-black),
+        0 -4px 0 -4px var(--color-black),
+        4px 0 0 -4px var(--color-black),
+        -4px 0 0 -4px var(--color-black),
+        inset 0 0 0 var(--border-width-lg) var(--gold);
+}
+
+.pixel-border-inner {
+    background-color: var(--inner-bg);
+    border: var(--border-width-lg) solid var(--color-black);
+    padding: var(--space-md);
+}
+
+.rpg-box-title,
+.pixel-heading {
+    color: var(--gold);
+    font-size: var(--font-size-lg);
+    text-shadow: var(--shadow-text);
+    margin-bottom: var(--space-sm);
+    border-bottom: var(--border-width-sm) dashed var(--parchment-dim);
+    padding-bottom: var(--space-xs);
+}
+
+.fighter-tag {
+    font-size: 26px;
+    color: var(--gold);
+    letter-spacing: var(--border-width-lg);
+}
+
+.btn-pixel {
+    font-family: var(--font-pixel);
+    font-size: var(--font-size-base);
+    padding: var(--space-sm) var(--space-btn-padding-x);
+    cursor: pointer;
+    border: var(--border-width-lg) solid var(--color-black);
+    color: #fff;
+    text-shadow: 1px 1px var(--color-black);
+    background-color: #555;
+    box-shadow: var(--shadow-btn);
+}
+
+.btn-pixel:active {
+    box-shadow: var(--shadow-btn-active);
+}
+
+.btn-pixel.small {
+    padding: var(--space-xs) var(--space-sm);
+    font-size: var(--font-size-sm);
+}
+
+.btn-pixel.block-button,
+.btn-pixel .block-button {
+    width: 100%;
+    margin-top: var(--space-sm);
+}
+
+.btn-green {
+    background-color: var(--stamina-green);
+}
+
+.btn-red {
+    background-color: var(--hp-red);
+}
+
+.btn-blue {
+    background-color: var(--mana-blue);
+}
+
+.btn-yellow {
+    background-color: var(--color-btn-yellow);
+    color: var(--parchment);
+}
+
+.massive-button {
+    width: 100%;
+    padding: 14px;
+    font-size: 26px;
+    letter-spacing: var(--border-width-lg);
+}
+
+.rpg-form-group {
+    margin-bottom: var(--space-base);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+.pixel-input,
+.pixel-select {
+    background-color: var(--inner-bg);
+    border: var(--border-width-sm) solid var(--parchment-dim);
+    color: var(--parchment);
+    font-family: var(--font-pixel);
+    font-size: var(--font-size-md);
+    padding: var(--space-sm);
+    outline: none;
+    height: var(--size-input-height);
+}
+
+.pixel-input:focus,
+.pixel-select:focus {
+    border-color: var(--gold);
+}
+
+.pixel-color-picker {
+    background: none;
+    border: var(--border-width-sm) solid var(--parchment-dim);
+    cursor: pointer;
+    width: 50px;
+    height: var(--size-input-height);
+}
+
+.rpg-input-action-group .pixel-input {
+    font-size: var(--font-size-xs);
+    padding: var(--space-xs);
+}
+
+.rpg-input-action-group .btn-pixel {
+    font-size: var(--font-size-sm);
+    padding: var(--space-xs);
+}
+
+.tab-item {
+    background: #1f140a;
+    border: var(--border-width-sm) solid var(--parchment-dim);
+    color: var(--parchment-dim);
+    font-family: var(--font-pixel);
+    padding: var(--space-xs) var(--space-sm);
+    cursor: pointer;
+}
+
+.tab-item.active {
+    background: var(--gold);
+    color: var(--color-black);
+    border-color: var(--color-black);
+    font-weight: bold;
+}
+
+.quest-item-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-sm);
+    padding: var(--space-md);
+    transition: transform var(--transition-fast), border-color var(--transition-fast);
+    border: var(--border-width-sm) solid transparent;
+}
+
+.quest-item-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--gold);
+}
+
+.quest-info {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.quest-badge {
+    font-size: var(--font-size-xxs);
+    background-color: var(--inner-bg);
+    padding: var(--space-xs) var(--space-sm);
+    border: 1px solid var(--gold);
+    color: var(--gold);
+}
+
+.rpg-item-slot {
+    width: var(--size-slot-md);
+    height: var(--size-slot-md);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: var(--space-xs);
+    font-size: var(--font-size-xxs);
+    list-style: none;
+}
+
+.rpg-inventory-grid .rpg-item-slot {
+    width: var(--size-slot-sm);
+    height: var(--size-slot-sm);
+}
+
+.slot-title {
+    font-size: 11px;
+    color: var(--gold);
+    margin-bottom: 2px;
+}
+
+.slot-status {
+    font-size: var(--font-size-xxxs);
+    color: var(--parchment-dim);
+}
+
+.rpg-nav-link {
+    color: var(--parchment-dim);
+    text-decoration: none;
+    padding: var(--space-xs) var(--space-sm);
+    border: var(--border-width-sm) solid transparent;
+}
+
+.rpg-nav-link:hover,
+.rpg-nav-link.active {
+    color: var(--gold);
+    border: var(--border-width-sm) solid var(--gold);
+    background-color: var(--box-bg);
+}
+
+.rpg-progress-frame {
+    background-color: var(--inner-bg);
+    border: var(--border-width-lg) solid var(--parchment);
+    height: 28px;
+    position: relative;
+    margin: var(--space-sm) 0;
+    width: 100%;
+    box-shadow: var(--shadow-inset-dark);
+}
+
+.rpg-progress-fill {
+    height: 100%;
+    background-color: var(--stamina-green);
+    width: 0%;
+    transition: width var(--transition-slow);
+    box-shadow: var(--shadow-bar-fill);
+}
+
+.rpg-progress-fill.health-fill {
+    background-color: var(--hp-red);
+}
+
+.rpg-progress-fill.level-up {
+    background-color: var(--gold);
+    animation: pulse-glow var(--duration-pulse) infinite alternate;
+}
+
+.pixel-subtext {
+    font-size: var(--font-size-xs);
+    color: var(--parchment-dim);
+}
+
+.rpg-stat-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.rpg-stat-table td {
+    padding: var(--space-sm);
+    border-bottom: 1px solid #3c2a17;
+}
+
+.rpg-stat-table td:last-child {
+    text-align: right;
+    color: #fff;
+}

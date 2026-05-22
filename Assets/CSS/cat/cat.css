@@ -1,0 +1,42 @@
+.michi-sprite-frame {
+    height: 140px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: var(--font-size-hero);
+    margin-bottom: var(--space-base);
+}
+
+.michi-sprite {
+    max-height: 120px;
+    width: auto;
+}
+
+.michi-large-display {
+    height: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: var(--font-size-hero-lg);
+    position: relative;
+    margin-bottom: var(--space-base);
+}
+
+.fighter-sprite-display {
+    font-size: var(--font-size-fighter);
+    margin: var(--space-base) 0;
+}
+
+.pixel-sprite-overlay {
+    position: absolute;
+    font-size: 35px;
+}
+
+#equipped-hat-visual {
+    top: 15px;
+}
+
+#equipped-weapon-visual {
+    right: 30px;
+    top: 70px;
+}
