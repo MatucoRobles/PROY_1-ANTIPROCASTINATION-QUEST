@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anti-Procrastination Quest - Tablón</title>
-    <link rel="stylesheet" href="Assets/CSS/styles.css">
+    <link rel="stylesheet" href="Assets/CSS/main.css">
+</head>
 <body class="rpg-theme-dark">
 
     <header class="rpg-navbar">
@@ -33,7 +34,17 @@
             <section class="rpg-box current-michi-card">
                 <h2 id="display-pet-name" class="michi-name-plate">MICHI_HERO</h2>
                 <figure class="michi-sprite-frame pixel-border-inner">
-                    <img src="GatoAtigrado.png" id="pet-avatar" class="michi-sprite idle-animation" alt="Michi Atigrado">
+                    <div class="cat-wrapper" aria-label="Gato pixel art">
+                        <div class="head">
+                            <div class="pixel"></div>
+                        </div>
+                        <div class="body-cat">
+                            <div class="pixel"></div>
+                            <div class="paw">
+                                <div class="pixel"></div>
+                            </div>
+                        </div>
+                    </div>
                 </figure>
                 <table class="rpg-stat-table">
                     <tbody>
@@ -113,6 +124,6 @@
         </form>
     </section>
 
-    <script src="assets/js/main.js"></script>
+    <script type="module" src="Assets/Js/main.js"></script>
 </body>
 </html>

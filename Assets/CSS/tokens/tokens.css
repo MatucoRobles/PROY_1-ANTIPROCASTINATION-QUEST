@@ -78,4 +78,9 @@
     --breakpoint-xl: 1100px;
     --container-max-width: 1100px;
     --container-max-width-battle: 1000px;
+    --pixel-size: 4px;
+    --cat-primary: #ffb347;
+    --cat-shadow: #e6953b;
+    --cat-light: #ffd08a;
+    --cat-scale: 1;
 }

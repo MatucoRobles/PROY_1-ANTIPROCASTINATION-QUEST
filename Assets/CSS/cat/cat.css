@@ -37,6 +37,40 @@
 }
 
 #equipped-weapon-visual {
-    right: 30px;
-    top: 70px;
+  right: 30px;
+  top: 70px;
+}
+
+.cat-wrapper {
+  position: relative;
+  transform: scale(var(--cat-scale));
+  transform-origin: top center;
+}
+
+.head {
+  width: calc(17 * var(--pixel-size));
+  height: calc(16 * var(--pixel-size));
+}
+
+.body-cat {
+  width: calc(14 * var(--pixel-size));
+  height: calc(12 * var(--pixel-size));
+  margin-left: var(--pixel-size);
+  position: relative;
+}
+
+.paw {
+  width: calc(9 * var(--pixel-size));
+  height: calc(6 * var(--pixel-size));
+  margin-left: calc(11 * var(--pixel-size));
+  position: absolute;
+  z-index: -2;
+  /* animation: saludar linear 2s infinite; */
+  transform-origin: left center;
+}
+
+.pixel {
+  width: var(--pixel-size);
+  height: var(--pixel-size);
+  box-shadow: var(--shadow);
 }

@@ -27,7 +27,17 @@
                 
                 <article class="arena-fighter player-local">
                     <h3 id="local-name" class="fighter-tag">PLAYER_ONE</h3>
-                    <img src="../GatoAtigrado.png" id="local-fighter-avatar" class="fighter-sprite-display michi-sprite bounce-animation" alt="Player One">
+                    <div class="cat-wrapper fighter-sprite-display" aria-label="Gato pixel art">
+                        <div class="head">
+                            <div class="pixel"></div>
+                        </div>
+                        <div class="body-cat">
+                            <div class="pixel"></div>
+                            <div class="paw">
+                                <div class="pixel"></div>
+                            </div>
+                        </div>
+                    </div>
                     <footer class="fighter-health-zone">
                         <div class="rpg-progress-frame health-frame">
                             <span id="local-hp-bar" class="rpg-progress-fill health-fill" style="width: 100%;"></span>
@@ -40,7 +50,17 @@
                 
                 <article class="arena-fighter player-opponent">
                     <h3 id="opponent-name" class="fighter-tag">RIVAL_MICHI</h3>
-                    <img src="../GatoAtigrado.png" id="opponent-fighter-avatar" class="fighter-sprite-display michi-sprite bounce-animation" alt="Rival Michi">
+                    <div class="cat-wrapper fighter-sprite-display" aria-label="Gato pixel art">
+                        <div class="head">
+                            <div class="pixel"></div>
+                        </div>
+                        <div class="body-cat">
+                            <div class="pixel"></div>
+                            <div class="paw">
+                                <div class="pixel"></div>
+                            </div>
+                        </div>
+                    </div>
                     <footer class="fighter-health-zone">
                         <div class="rpg-progress-frame health-frame">
                             <span id="opponent-hp-bar" class="rpg-progress-fill health-fill" style="width: 100%;"></span>
@@ -76,6 +96,6 @@
         </section>
     </main>
 
-    <script src="../assets/js/battle.js"></script>
+    <script type="module" src="../Assets/Js/main.js"></script>
 </body>
 </html>
