@@ -1,5 +1,5 @@
 import { PIXEL_MAPS, COLOR_INDICES, CSS_VARS, PIXEL_SIZE_CONFIG, CAT_MAX_COLS, QUEST_BADGE_ICONS } from "./config.js";
-import { state } from "./state.js";
+import { state, getProgress } from "./state.js";
 import { elements, questList } from "./dom.js";
 
 export const COLORS = {
@@ -145,4 +145,21 @@ export function renderQuestList(quests) {
   quests.forEach((quest) => {
     questList.appendChild(renderQuestCard(quest));
   });
+}
+
+export function renderProgress() {
+  const { completadas, porcentaje, cofresDisponibles } = getProgress();
+  const progressBar = document.querySelector("#main-progress-bar");
+  const progressText = document.querySelector("#progress-text");
+  const btnOpenChest = document.querySelector("#btn-open-chest");
+
+  if (progressBar) {
+    progressBar.style.width = `${porcentaje}%`;
+  }
+  if (progressText) {
+    progressText.textContent = `${porcentaje}% Completado (${completadas} Misiones)`;
+  }
+  if (btnOpenChest) {
+    btnOpenChest.disabled = cofresDisponibles <= 0;
+  }
 }

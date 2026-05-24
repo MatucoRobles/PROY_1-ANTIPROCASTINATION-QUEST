@@ -1,4 +1,4 @@
-import { DEFAULT_STATE, SCALE_CONFIG, STORAGE_KEY, QUEST_STORAGE_KEY, QUEST_ESTADOS } from "./config.js";
+import { DEFAULT_STATE, SCALE_CONFIG, STORAGE_KEY, QUEST_STORAGE_KEY, QUEST_ESTADOS, QUEST_PROGRESS_BASE, PROGRESS_STORAGE_KEY } from "./config.js";
 
 export const state = { ...DEFAULT_STATE };
 
@@ -107,4 +107,31 @@ export function deleteQuest(id) {
   const quests = loadQuests();
   const filtered = quests.filter((q) => q.id !== id);
   saveQuests(filtered);
+}
+
+export function getProgress() {
+  const completadas = loadTotalCompletadas();
+  const porcentaje = Math.round(((completadas % QUEST_PROGRESS_BASE) / QUEST_PROGRESS_BASE) * 100);
+  const cofresDisponibles = Math.floor(completadas / QUEST_PROGRESS_BASE);
+  return { completadas, porcentaje, cofresDisponibles };
+}
+
+export function loadTotalCompletadas() {
+  try {
+    const stored = localStorage.getItem(PROGRESS_STORAGE_KEY);
+    if (!stored) return 0;
+    const parsed = parseInt(stored, 10);
+    return isNaN(parsed) ? 0 : parsed;
+  } catch {
+    return 0;
+  }
+}
+
+export function saveTotalCompletadas(n) {
+  localStorage.setItem(PROGRESS_STORAGE_KEY, n.toString());
+}
+
+export function incrementCompletadas() {
+  const current = loadTotalCompletadas();
+  saveTotalCompletadas(current + 1);
 }

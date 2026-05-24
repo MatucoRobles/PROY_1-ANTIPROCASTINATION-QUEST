@@ -1,6 +1,6 @@
 import { loadState, loadQuests } from "./state.js";
 import { bindEvents } from "./event.js";
-import { renderAll, renderQuestList } from "./render.js";
+import { renderAll, renderQuestList, renderProgress } from "./render.js";
 
 export function initCat() {
   loadState();
@@ -8,6 +8,7 @@ export function initCat() {
   renderAll();
   const quests = loadQuests();
   renderQuestList(quests);
+  renderProgress();
 }
 
 document.addEventListener("DOMContentLoaded", () => {

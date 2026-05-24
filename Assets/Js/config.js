@@ -103,3 +103,7 @@ export const QUEST_BADGE_ICONS = Object.freeze({
   activa: "⚔️",
   completada: "✅",
 });
+
+export const QUEST_PROGRESS_BASE = 5;
+
+export const PROGRESS_STORAGE_KEY = "apq_total_completadas";

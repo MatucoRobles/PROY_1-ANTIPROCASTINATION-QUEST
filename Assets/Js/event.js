@@ -1,5 +1,5 @@
-import { patchState, addQuest, loadQuests, completeQuest, deleteQuest } from "./state.js";
-import { renderAll, renderCssVariables, renderCat, renderQuestList } from "./render.js";
+import { patchState, addQuest, loadQuests, completeQuest, deleteQuest, incrementCompletadas } from "./state.js";
+import { renderAll, renderCssVariables, renderCat, renderQuestList, renderProgress } from "./render.js";
 import { inputs, modal, questList } from "./dom.js";
 
 export function bindEvents() {
@@ -71,11 +71,14 @@ export function bindEvents() {
       if (!action || !id) return;
 
       if (action === "complete") {
+        incrementCompletadas();
         completeQuest(id);
         renderQuestList(loadQuests());
+        renderProgress();
       } else if (action === "delete") {
         deleteQuest(id);
         renderQuestList(loadQuests());
+        renderProgress();
       }
     });
   }
@@ -112,5 +115,6 @@ export function handleQuestSubmit(e) {
   addQuest(nombre, estado);
   const quests = loadQuests();
   renderQuestList(quests);
+  renderProgress();
   closeModal();
 }
