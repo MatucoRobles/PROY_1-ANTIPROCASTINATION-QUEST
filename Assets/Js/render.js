@@ -163,3 +163,14 @@ export function renderProgress() {
     btnOpenChest.disabled = cofresDisponibles <= 0;
   }
 }
+
+export function renderTabs(activeFilter) {
+  const tabs = document.querySelectorAll(".tab-item");
+  tabs.forEach((tab) => {
+    if (tab.dataset.filter === activeFilter) {
+      tab.classList.add("active");
+    } else {
+      tab.classList.remove("active");
+    }
+  });
+}

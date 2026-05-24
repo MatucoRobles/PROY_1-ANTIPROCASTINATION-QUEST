@@ -135,3 +135,9 @@ export function incrementCompletadas() {
   const current = loadTotalCompletadas();
   saveTotalCompletadas(current + 1);
 }
+
+export function filterQuests(estado) {
+  const quests = loadQuests();
+  if (estado === "all") return quests;
+  return quests.filter((q) => q.estado === estado);
+}

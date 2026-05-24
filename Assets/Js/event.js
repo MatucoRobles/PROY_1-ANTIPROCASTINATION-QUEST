@@ -1,5 +1,5 @@
-import { patchState, addQuest, loadQuests, completeQuest, deleteQuest, incrementCompletadas } from "./state.js";
-import { renderAll, renderCssVariables, renderCat, renderQuestList, renderProgress } from "./render.js";
+import { patchState, addQuest, loadQuests, completeQuest, deleteQuest, incrementCompletadas, filterQuests } from "./state.js";
+import { renderAll, renderCssVariables, renderCat, renderQuestList, renderProgress, renderTabs } from "./render.js";
 import { inputs, modal, questList } from "./dom.js";
 
 export function bindEvents() {
@@ -80,6 +80,17 @@ export function bindEvents() {
         renderQuestList(loadQuests());
         renderProgress();
       }
+    });
+  }
+
+  const tabsContainer = document.querySelector(".rpg-tabs");
+  if (tabsContainer) {
+    tabsContainer.addEventListener("click", (e) => {
+      const target = e.target;
+      if (!target.dataset.filter) return;
+      const filter = target.dataset.filter;
+      renderTabs(filter);
+      renderQuestList(filterQuests(filter));
     });
   }
 }
