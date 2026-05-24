@@ -114,7 +114,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: var(--space-sm);
+    margin-bottom: var(--space-base);
+    padding-bottom: var(--space-base);
+    border-bottom: var(--border-width-sm) dashed var(--parchment-dim);
 }
 
 .rpg-tabs ul {
@@ -143,6 +145,11 @@
         flex-direction: column;
         padding: 0 var(--space-sm);
     }
+
+    .quest-board-header {
+        flex-direction: column;
+    }
+
 
     .rpg-sidebar,
     .rpg-content-area,

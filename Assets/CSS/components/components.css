@@ -24,9 +24,6 @@
     color: var(--gold);
     font-size: var(--font-size-lg);
     text-shadow: var(--shadow-text);
-    margin-bottom: var(--space-sm);
-    border-bottom: var(--border-width-sm) dashed var(--parchment-dim);
-    padding-bottom: var(--space-xs);
 }
 
 .fighter-tag {
@@ -38,13 +35,15 @@
 .btn-pixel {
     font-family: var(--font-pixel);
     font-size: var(--font-size-base);
-    padding: var(--space-sm) var(--space-btn-padding-x);
+    padding: var(--space-sm) var(--size-btn-padding-x);
     cursor: pointer;
     border: var(--border-width-lg) solid var(--color-black);
     color: #fff;
     text-shadow: 1px 1px var(--color-black);
     background-color: #555;
     box-shadow: var(--shadow-btn);
+    box-sizing: border-box;
+    max-width: 100%;
 }
 
 .btn-pixel:active {
@@ -260,4 +259,32 @@
 .rpg-stat-table td:last-child {
     text-align: right;
     color: #fff;
+}
+
+.rpg-form-actions,
+.quest-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    min-width: 0;
+}
+
+@media (max-width: 768px) {
+    .btn-pixel {
+        font-size: var(--font-size-sm);
+        padding: var(--space-xs) var(--space-sm);
+        word-break: break-word;
+    }
+
+    .btn-pixel.massive-button {
+        font-size: var(--font-size-lg);
+        padding: var(--space-sm) var(--space-md);
+    }
+}
+
+@media (max-width: 480px) {
+    .btn-pixel:not(.small):not(.massive-button) {
+        width: 100%;
+        text-align: center;
+    }
 }
