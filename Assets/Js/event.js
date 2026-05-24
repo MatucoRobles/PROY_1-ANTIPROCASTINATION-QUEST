@@ -1,6 +1,6 @@
-import { patchState, addQuest, loadQuests } from "./state.js";
+import { patchState, addQuest, loadQuests, completeQuest, deleteQuest } from "./state.js";
 import { renderAll, renderCssVariables, renderCat, renderQuestList } from "./render.js";
-import { inputs, modal } from "./dom.js";
+import { inputs, modal, questList } from "./dom.js";
 
 export function bindEvents() {
   if (inputs.primary) {
@@ -61,6 +61,23 @@ export function bindEvents() {
 
   if (modal.form) {
     modal.form.addEventListener("submit", handleQuestSubmit);
+  }
+
+  if (questList) {
+    questList.addEventListener("click", (e) => {
+      const target = e.target;
+      const action = target.dataset.action;
+      const id = target.dataset.id;
+      if (!action || !id) return;
+
+      if (action === "complete") {
+        completeQuest(id);
+        renderQuestList(loadQuests());
+      } else if (action === "delete") {
+        deleteQuest(id);
+        renderQuestList(loadQuests());
+      }
+    });
   }
 }
 

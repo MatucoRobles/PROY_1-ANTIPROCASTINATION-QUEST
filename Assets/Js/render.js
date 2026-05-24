@@ -120,7 +120,10 @@ export function renderQuestCard(quest) {
       <span class="quest-badge">${icon} ${estadoUpper}</span>
       <p class="quest-name-text">${quest.nombre}</p>
     </header>
-    <footer class="quest-actions"></footer>
+    <footer class="quest-actions">
+      ${quest.estado !== "completada" ? `<button class="btn-pixel btn-blue small" data-action="complete" data-id="${quest.id}">✔</button>` : ""}
+      <button class="btn-pixel btn-red small" data-action="delete" data-id="${quest.id}">✖</button>
+    </footer>
   `;
 
   return article;

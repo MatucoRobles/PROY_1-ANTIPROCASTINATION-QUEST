@@ -93,3 +93,18 @@ export function addQuest(nombre, estado) {
   saveQuests(quests);
   return quest;
 }
+
+export function completeQuest(id) {
+  const quests = loadQuests();
+  const quest = quests.find((q) => q.id === id);
+  if (quest) {
+    quest.estado = "completada";
+    saveQuests(quests);
+  }
+}
+
+export function deleteQuest(id) {
+  const quests = loadQuests();
+  const filtered = quests.filter((q) => q.id !== id);
+  saveQuests(filtered);
+}
