@@ -189,9 +189,20 @@
         font-size: 30px;
     }
 
-    .rpg-inventory-grid {
+.rpg-inventory-grid {
         grid-template-columns: repeat(5, 1fr);
     }
+
+    .rpg-icon-img {
+        width: 20px;
+        height: 20px;
+    }
+
+    .btn-pixel.small .rpg-icon-img {
+        width: 16px;
+        height: 16px;
+    }
+}
 
     .rpg-modal-overlay {
         padding: var(--space-sm);

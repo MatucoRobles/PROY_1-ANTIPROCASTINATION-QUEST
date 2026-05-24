@@ -99,9 +99,9 @@ export const QUEST_ESTADOS = Object.freeze(["pendiente", "activa", "completada"]
 export const QUEST_ESTADO_DEFAULT = "pendiente";
 
 export const QUEST_BADGE_ICONS = Object.freeze({
-  pendiente: "⌛",
-  activa: "⚔️",
-  completada: "✅",
+  pendiente: "hourglass",
+  activa: "helmet",
+  completada: "complete",
 });
 
 export const QUEST_PROGRESS_BASE = 5;

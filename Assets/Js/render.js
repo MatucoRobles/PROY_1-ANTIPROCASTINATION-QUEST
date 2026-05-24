@@ -107,22 +107,34 @@ export function renderAll() {
   updateAriaLabel();
 }
 
+const ICON_IMG_MAP = Object.freeze({
+  helmet: "Assets/Images/icons/helmet.png",
+  hourglass: "Assets/Images/icons/hourglass.png",
+  complete: "Assets/Images/icons/complete.png",
+});
+
+function getIconImg(iconKey, alt, width = 14, height = 14) {
+  const src = ICON_IMG_MAP[iconKey];
+  if (!src) return "";
+  return `<img src="${src}" alt="${alt}" class="rpg-icon-img" width="${width}" height="${height}">`;
+}
+
 export function renderQuestCard(quest) {
   const article = document.createElement("article");
   article.className = `quest-item-card pixel-border-inner status-${quest.estado}`;
   article.dataset.id = quest.id;
 
-  const icon = QUEST_BADGE_ICONS[quest.estado] || "";
+  const iconKey = QUEST_BADGE_ICONS[quest.estado] || "helmet";
   const estadoUpper = quest.estado.toUpperCase();
 
   article.innerHTML = `
     <header class="quest-info">
-      <span class="quest-badge">${icon} ${estadoUpper}</span>
+      <span class="quest-badge">${getIconImg(iconKey, "", 14, 14)} ${estadoUpper}</span>
       <p class="quest-name-text">${quest.nombre}</p>
     </header>
     <footer class="quest-actions">
-      ${quest.estado !== "completada" ? `<button class="btn-pixel btn-blue small" data-action="complete" data-id="${quest.id}">✔</button>` : ""}
-      <button class="btn-pixel btn-red small" data-action="delete" data-id="${quest.id}">✖</button>
+      ${quest.estado !== "completada" ? `<button class="btn-pixel btn-blue small" data-action="complete" data-id="${quest.id}">${getIconImg("complete", "Completar", 14, 14)}</button>` : ""}
+      <button class="btn-pixel btn-red small" data-action="delete" data-id="${quest.id}">${getIconImg("failed", "Eliminar", 14, 14)}</button>
     </footer>
   `;
 

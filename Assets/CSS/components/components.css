@@ -361,3 +361,16 @@
     font-family: var(--font-pixel);
     font-size: var(--font-size-xs);
 }
+
+.rpg-icon-img {
+    display: inline-block;
+    vertical-align: middle;
+    image-rendering: pixelated;
+    width: 32px;
+    height: 32px;
+}
+
+.btn-pixel.small .rpg-icon-img {
+    width: 18px;
+    height: 18px;
+}

@@ -10,7 +10,7 @@
 <body class="rpg-theme-dark">
 
     <header class="rpg-navbar">
-        <h1 class="pixel-text-blink">⚔️ Anti-Procrastination Quest ⚔️</h1>
+        <h1 class="pixel-text-blink"><img src="Assets/Images/icons/helmet.png" alt="" aria-hidden="true" class="rpg-icon-img"> Anti-Procrastination Quest <img src="Assets/Images/icons/helmet.png" alt="" aria-hidden="true" class="rpg-icon-img"></h1>
         <nav class="rpg-nav">
             <ul>
                 <li><a href="index.html" class="rpg-nav-link active">TABLÓN</a></li>
@@ -21,9 +21,9 @@
     </header>
 
     <main class="rpg-main-container dashboard-container">
-        
+
         <aside class="rpg-sidebar" aria-label="Estado del Jugador">
-            
+
             <section class="rpg-box">
                 <h2 class="rpg-box-title">PROGRESO GLOBAL</h2>
                 <div class="rpg-progress-frame">
@@ -49,24 +49,24 @@
                 </figure>
                 <table class="rpg-stat-table">
                     <tbody>
-                        <tr><td>HP:</td><td><b>❤️</b> <span id="stat-hp">100</span></td></tr>
-                        <tr><td>ATK:</td><td>⚔️ <span id="stat-atk">15</span></td></tr>
-                        <tr><td>DEF:</td><td>🛡️ <span id="stat-def">12</span></td></tr>
+                        <tr><td>HP:</td><td><img src="Assets/Images/icons/heart.png" alt="HP" class="rpg-icon-img"> <span id="stat-hp">100</span></td></tr>
+                        <tr><td>ATK:</td><td><img src="Assets/Images/icons/sword.png" alt="ATK" class="rpg-icon-img"> <span id="stat-atk">15</span></td></tr>
+                        <tr><td>DEF:</td><td><img src="Assets/Images/icons/shield.png" alt="DEF" class="rpg-icon-img"> <span id="stat-def">12</span></td></tr>
                     </tbody>
                 </table>
             </section>
 
             <section class="rpg-box text-center">
                 <h2 class="rpg-box-title">RECOMPENSAS</h2>
-                <button id="btn-open-chest" class="btn-pixel btn-yellow">🎁 ABRIR COFRE</button>
+                <button id="btn-open-chest" class="btn-pixel btn-yellow"><img src="Assets/Images/icons/chest.png" alt="Cofre" class="rpg-icon-img"> ABRIR COFRE</button>
             </section>
 
         </aside>
 
         <section class="rpg-content-area rpg-box main-quest-board" aria-label="Tablón de Tareas">
-            
+
             <header class="quest-board-header">
-                <h2 class="pixel-heading">📌 TABLÓN DE MISIONES</h2>
+                <h2 class="pixel-heading"><img src="Assets/Images/icons/mision.png" alt="" aria-hidden="true" class="rpg-icon-img"> TABLÓN DE MISIONES</h2>
                 <button id="btn-open-modal" class="btn-pixel btn-green">+ NUEVA QUEST</button>
             </header>
 
@@ -82,12 +82,12 @@
             <section id="quests-list" class="quest-list-scroll">
                 <article class="quest-item-card pixel-border-inner status-activa">
                     <header class="quest-info">
-                        <span class="quest-badge">⚔️ ACTIVA</span>
+                        <span class="quest-badge"><img src="Assets/Images/icons/helmet.png" alt="" aria-hidden="true" class="rpg-icon-img"> ACTIVA</span>
                         <p class="quest-name-text">Estudiar Arquitectura de Computadoras</p>
                     </header>
                     <footer class="quest-actions">
-                        <button class="btn-pixel btn-blue small">✔</button>
-                        <button class="btn-pixel btn-red small">✖</button>
+                        <button class="btn-pixel btn-blue small"><img src="Assets/Images/icons/complete.png" alt="Completar" class="rpg-icon-img"></button>
+                        <button class="btn-pixel btn-red small"><img src="Assets/Images/icons/failed.png" alt="Eliminar" class="rpg-icon-img"></button>
                     </footer>
                 </article>
             </section>
@@ -99,12 +99,12 @@
     <section id="quest-modal" class="rpg-modal-overlay hidden" aria-hidden="true">
         <form id="quest-form" class="rpg-modal-box rpg-form">
             <input type="hidden" id="quest-id">
-            
+
             <header class="rpg-modal-header">
                 <h3>[ NUEVA MISIÓN ]</h3>
                 <button type="button" id="btn-close-modal" class="btn-close-pixel">×</button>
             </header>
-            
+
             <p class="rpg-form-group">
                 <label for="quest-title">> DESCRIPCIÓN DE LA TAREA:</label>
                 <input type="text" id="quest-title" class="pixel-input" required placeholder="Ej: Resolver guía de Física...">
@@ -113,8 +113,8 @@
             <p class="rpg-form-group">
                 <label for="quest-status">> ESTADO INICIAL:</label>
                 <select id="quest-status" class="pixel-select">
-                    <option value="pendiente">PENDIENTE ⌛</option>
-                    <option value="activa">ACTIVA ⚔️</option>
+                    <option value="pendiente">PENDIENTE</option>
+                    <option value="activa">ACTIVA</option>
                 </select>
             </p>
 
