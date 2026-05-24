@@ -192,4 +192,13 @@
     .rpg-inventory-grid {
         grid-template-columns: repeat(5, 1fr);
     }
+
+    .rpg-modal-overlay {
+        padding: var(--space-sm);
+        align-items: flex-end;
+    }
+
+    .rpg-modal-box {
+        max-width: 100%;
+    }
 }

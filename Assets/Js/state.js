@@ -1,4 +1,4 @@
-import { DEFAULT_STATE, SCALE_CONFIG, STORAGE_KEY } from "./config.js";
+import { DEFAULT_STATE, SCALE_CONFIG, STORAGE_KEY, QUEST_STORAGE_KEY, QUEST_ESTADOS } from "./config.js";
 
 export const state = { ...DEFAULT_STATE };
 
@@ -55,4 +55,41 @@ export function patchState(partial) {
 export function resetState() {
   Object.assign(state, DEFAULT_STATE);
   saveState();
+}
+
+export function loadQuests() {
+  try {
+    const stored = localStorage.getItem(QUEST_STORAGE_KEY);
+    if (!stored) return [];
+
+    const parsed = JSON.parse(stored);
+    if (!Array.isArray(parsed)) return [];
+
+    return parsed.filter(
+      (q) =>
+        q &&
+        typeof q.id === "string" &&
+        typeof q.nombre === "string" &&
+        typeof q.estado === "string" &&
+        QUEST_ESTADOS.includes(q.estado)
+    );
+  } catch {
+    return [];
+  }
+}
+
+export function saveQuests(quests) {
+  localStorage.setItem(QUEST_STORAGE_KEY, JSON.stringify(quests));
+}
+
+export function addQuest(nombre, estado) {
+  const quests = loadQuests();
+  const quest = {
+    id: Date.now().toString(),
+    nombre,
+    estado,
+  };
+  quests.push(quest);
+  saveQuests(quests);
+  return quest;
 }

@@ -1,6 +1,6 @@
-import { PIXEL_MAPS, COLOR_INDICES, CSS_VARS, PIXEL_SIZE_CONFIG, CAT_MAX_COLS } from "./config.js";
+import { PIXEL_MAPS, COLOR_INDICES, CSS_VARS, PIXEL_SIZE_CONFIG, CAT_MAX_COLS, QUEST_BADGE_ICONS } from "./config.js";
 import { state } from "./state.js";
-import { elements } from "./dom.js";
+import { elements, questList } from "./dom.js";
 
 export const COLORS = {
   0: "transparent",
@@ -105,4 +105,41 @@ export function renderAll() {
   syncColorsMap();
   renderCat();
   updateAriaLabel();
+}
+
+export function renderQuestCard(quest) {
+  const article = document.createElement("article");
+  article.className = `quest-item-card pixel-border-inner status-${quest.estado}`;
+  article.dataset.id = quest.id;
+
+  const icon = QUEST_BADGE_ICONS[quest.estado] || "";
+  const estadoUpper = quest.estado.toUpperCase();
+
+  article.innerHTML = `
+    <header class="quest-info">
+      <span class="quest-badge">${icon} ${estadoUpper}</span>
+      <p class="quest-name-text">${quest.nombre}</p>
+    </header>
+    <footer class="quest-actions"></footer>
+  `;
+
+  return article;
+}
+
+export function renderQuestList(quests) {
+  if (!questList) return;
+
+  questList.innerHTML = "";
+
+  if (quests.length === 0) {
+    const p = document.createElement("p");
+    p.className = "pixel-subtext";
+    p.textContent = "No hay misiones registradas.";
+    questList.appendChild(p);
+    return;
+  }
+
+  quests.forEach((quest) => {
+    questList.appendChild(renderQuestCard(quest));
+  });
 }

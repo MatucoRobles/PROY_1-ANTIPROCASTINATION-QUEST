@@ -91,3 +91,15 @@ export const CSS_VARS = Object.freeze({
   scale: "--cat-scale",
   pixelSize: "--pixel-size",
 });
+
+export const QUEST_STORAGE_KEY = "apq_quests";
+
+export const QUEST_ESTADOS = Object.freeze(["pendiente", "activa", "completada"]);
+
+export const QUEST_ESTADO_DEFAULT = "pendiente";
+
+export const QUEST_BADGE_ICONS = Object.freeze({
+  pendiente: "⌛",
+  activa: "⚔️",
+  completada: "✅",
+});
