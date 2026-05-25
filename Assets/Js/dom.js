@@ -24,3 +24,5 @@ export const modal = Object.freeze({
 });
 
 export const questList = document.querySelector("#quests-list");
+
+export const btnOpenChest = document.querySelector("#btn-open-chest");

@@ -1,5 +1,5 @@
 import { PIXEL_MAPS, COLOR_INDICES, CSS_VARS, PIXEL_SIZE_CONFIG, CAT_MAX_COLS, QUEST_BADGE_ICONS } from "./config.js";
-import { state, getProgress } from "./state.js";
+import { state, getProgress, michiState } from "./state.js";
 import { elements, questList } from "./dom.js";
 
 export const COLORS = {
@@ -24,7 +24,7 @@ function getAdaptivePixelSize(container) {
   return clamp(calculated, PIXEL_SIZE_CONFIG.min, PIXEL_SIZE_CONFIG.max);
 }
 
-function createBoxShadow(pixels, cols, pixelSize) {
+function createBoxShadow(pixels, cols, pixelSize, colorsMap = COLORS) {
   return pixels
     .map((pixelValue, index) => {
       if (pixelValue === 0) return null;
@@ -32,13 +32,13 @@ function createBoxShadow(pixels, cols, pixelSize) {
       const x = pixelSize * (index % cols);
       const y = pixelSize * Math.floor(index / cols);
 
-      return `${x}px ${y}px ${COLORS[pixelValue]}`;
+      return `${x}px ${y}px ${colorsMap[pixelValue]}`;
     })
     .filter(Boolean)
     .join(",");
 }
 
-function renderPixelArt(container, pixels, cols, pixelSize) {
+function renderPixelArt(container, pixels, cols, pixelSize, colorsMap = COLORS) {
   const pixel = container.querySelector(".pixel");
   if (!pixel) return;
 
@@ -49,7 +49,7 @@ function renderPixelArt(container, pixels, cols, pixelSize) {
 
   const rows = Math.ceil(pixels.length / cols);
 
-  pixel.style.boxShadow = createBoxShadow(pixels, cols, pixelSize);
+  pixel.style.boxShadow = createBoxShadow(pixels, cols, pixelSize, colorsMap);
   container.style.width = `${cols * pixelSize}px`;
   container.style.height = `${rows * pixelSize}px`;
 }
@@ -105,12 +105,102 @@ export function renderAll() {
   syncColorsMap();
   renderCat();
   updateAriaLabel();
+  renderEquippedItems();
+  renderStats();
+}
+
+export function renderEquippedItems() {
+  const slots = ["weapon", "armor", "hat"];
+  slots.forEach((slot) => {
+    const item = michiState.equipped[slot];
+    const existing = document.querySelector(`.equipped-item[data-slot="${slot}"]`);
+    if (existing) existing.remove();
+    if (!item) return;
+
+    const img = document.createElement("img");
+    img.src = item.img;
+    img.alt = item.nombre;
+    img.className = `equipped-item equipped-${slot}`;
+    img.dataset.slot = slot;
+
+    document.querySelector(".cat-wrapper")?.appendChild(img);
+  });
+}
+
+export function renderStats() {
+  const hpEl = document.querySelector("#stat-hp");
+  const atkEl = document.querySelector("#stat-atk");
+  const defEl = document.querySelector("#stat-def");
+  if (hpEl) hpEl.textContent = michiState.hp;
+  if (atkEl) atkEl.textContent = michiState.atk;
+  if (defEl) defEl.textContent = michiState.def;
+}
+
+export function renderRewardModal(item, autoEquipped) {
+  const existing = document.querySelector(".reward-overlay");
+  if (existing) existing.remove();
+
+  const overlay = document.createElement("div");
+  overlay.className = "reward-overlay rpg-modal-overlay";
+
+  const modalBox = document.createElement("div");
+  modalBox.className = "reward-modal rpg-modal-box";
+
+  const title = document.createElement("h3");
+  title.className = "rpg-box-title";
+  title.textContent = "¡RECOMPENSA!";
+
+  const name = document.createElement("p");
+  name.textContent = item.nombre;
+
+  const bonus = document.createElement("p");
+  bonus.textContent = `+${item.bonus} ${item.stat.toUpperCase()}`;
+
+  const closeBtn = document.createElement("button");
+  closeBtn.className = "btn-pixel btn-green";
+  closeBtn.id = "btn-close-reward";
+  closeBtn.textContent = "CERRAR";
+
+  const buttonsDiv = document.createElement("div");
+  buttonsDiv.appendChild(closeBtn);
+
+  if (autoEquipped) {
+    const autoNote = document.createElement("p");
+    autoNote.className = "pixel-subtext";
+    autoNote.textContent = "¡Equipado automáticamente!";
+    modalBox.appendChild(title);
+    modalBox.appendChild(name);
+    modalBox.appendChild(bonus);
+    modalBox.appendChild(autoNote);
+  } else {
+    const equipBtn = document.createElement("button");
+    equipBtn.className = "btn-pixel btn-green";
+    equipBtn.id = "btn-equip-item";
+    equipBtn.textContent = "EQUIPAR";
+
+    const discardBtn = document.createElement("button");
+    discardBtn.className = "btn-pixel btn-red";
+    discardBtn.id = "btn-discard-item";
+    discardBtn.textContent = "DESCARTAR";
+
+    modalBox.appendChild(title);
+    modalBox.appendChild(name);
+    modalBox.appendChild(bonus);
+    buttonsDiv.insertBefore(equipBtn, closeBtn);
+    buttonsDiv.insertBefore(discardBtn, closeBtn);
+  }
+
+  modalBox.appendChild(buttonsDiv);
+  overlay.appendChild(modalBox);
+  overlay._rewardItem = item;
+  document.body.appendChild(overlay);
 }
 
 const ICON_IMG_MAP = Object.freeze({
   helmet: "Assets/Images/icons/helmet.png",
   hourglass: "Assets/Images/icons/hourglass.png",
   complete: "Assets/Images/icons/complete.png",
+  failed: "Assets/Images/icons/failed.png",
 });
 
 function getIconImg(iconKey, alt, width = 14, height = 14) {
@@ -133,8 +223,8 @@ export function renderQuestCard(quest) {
       <p class="quest-name-text">${quest.nombre}</p>
     </header>
     <footer class="quest-actions">
-      ${quest.estado !== "completada" ? `<button class="btn-pixel btn-blue small" data-action="complete" data-id="${quest.id}">${getIconImg("complete", "Completar", 14, 14)}</button>` : ""}
-      <button class="btn-pixel btn-red small" data-action="delete" data-id="${quest.id}">${getIconImg("failed", "Eliminar", 14, 14)}</button>
+      ${quest.estado !== "completada" ? `<button class="btn-pixel btn-blue small" data-action="complete" data-id="${quest.id}">✔</button>` : ""}
+      <button class="btn-pixel btn-red small" data-action="delete" data-id="${quest.id}">✖</button>
     </footer>
   `;
 

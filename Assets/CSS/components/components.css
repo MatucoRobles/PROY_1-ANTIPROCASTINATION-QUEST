@@ -374,3 +374,19 @@
     width: 18px;
     height: 18px;
 }
+
+.reward-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: var(--z-modal);
+}
+
+.reward-modal {
+    text-align: center;
+    min-width: 280px;
+    max-width: 400px;
+}

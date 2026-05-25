@@ -1,4 +1,5 @@
-import { DEFAULT_STATE, SCALE_CONFIG, STORAGE_KEY, QUEST_STORAGE_KEY, QUEST_ESTADOS, QUEST_PROGRESS_BASE, PROGRESS_STORAGE_KEY } from "./config.js";
+import { DEFAULT_STATE, SCALE_CONFIG, STORAGE_KEY, QUEST_STORAGE_KEY, QUEST_ESTADOS, QUEST_PROGRESS_BASE, PROGRESS_STORAGE_KEY, MICHI_STORAGE_KEY } from "./config.js";
+import { ITEM_POOL } from "./items.config.js";
 
 export const state = { ...DEFAULT_STATE };
 
@@ -110,30 +111,94 @@ export function deleteQuest(id) {
 }
 
 export function getProgress() {
-  const completadas = loadTotalCompletadas();
-  const porcentaje = Math.round(((completadas % QUEST_PROGRESS_BASE) / QUEST_PROGRESS_BASE) * 100);
-  const cofresDisponibles = Math.floor(completadas / QUEST_PROGRESS_BASE);
-  return { completadas, porcentaje, cofresDisponibles };
+  const { misionesCompletas, cofresDisponibles } = loadTotalCompletadas();
+  const porcentaje = Math.round(((misionesCompletas % QUEST_PROGRESS_BASE) / QUEST_PROGRESS_BASE) * 100);
+  return { completadas: misionesCompletas, porcentaje, cofresDisponibles };
 }
 
 export function loadTotalCompletadas() {
   try {
     const stored = localStorage.getItem(PROGRESS_STORAGE_KEY);
-    if (!stored) return 0;
-    const parsed = parseInt(stored, 10);
-    return isNaN(parsed) ? 0 : parsed;
+    if (!stored) return { misionesCompletas: 0, cofresDisponibles: 0 };
+    const parsed = JSON.parse(stored);
+    if (typeof parsed === "number") {
+      return { misionesCompletas: parsed, cofresDisponibles: Math.floor(parsed / QUEST_PROGRESS_BASE) };
+    }
+    if (typeof parsed?.misionesCompletas === "number" && typeof parsed?.cofresDisponibles === "number") {
+      return parsed;
+    }
+    return { misionesCompletas: 0, cofresDisponibles: 0 };
   } catch {
-    return 0;
+    return { misionesCompletas: 0, cofresDisponibles: 0 };
   }
 }
 
-export function saveTotalCompletadas(n) {
-  localStorage.setItem(PROGRESS_STORAGE_KEY, n.toString());
+export function saveTotalCompletadas(obj) {
+  localStorage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify(obj));
 }
 
 export function incrementCompletadas() {
   const current = loadTotalCompletadas();
-  saveTotalCompletadas(current + 1);
+  const updated = { misionesCompletas: current.misionesCompletas + 1, cofresDisponibles: current.cofresDisponibles + 1 };
+  saveTotalCompletadas(updated);
+}
+
+export const michiState = {
+  hp: 100,
+  atk: 15,
+  def: 12,
+  equipped: { weapon: null, armor: null, hat: null },
+};
+
+export function loadMichiState() {
+  try {
+    const stored = localStorage.getItem(MICHI_STORAGE_KEY);
+    if (!stored) return;
+    const parsed = JSON.parse(stored);
+    if (parsed?.hp !== undefined) michiState.hp = parsed.hp;
+    if (parsed?.atk !== undefined) michiState.atk = parsed.atk;
+    if (parsed?.def !== undefined) michiState.def = parsed.def;
+    if (parsed?.equipped) {
+      michiState.equipped.weapon = parsed.equipped.weapon || null;
+      michiState.equipped.armor = parsed.equipped.armor || null;
+      michiState.equipped.hat = parsed.equipped.hat || null;
+    }
+  } catch {}
+}
+
+export function saveMichiState() {
+  localStorage.setItem(MICHI_STORAGE_KEY, JSON.stringify(michiState));
+}
+
+export function openChest() {
+  const progress = loadTotalCompletadas();
+  if (progress.cofresDisponibles <= 0) return null;
+
+  const item = ITEM_POOL[Math.floor(Math.random() * ITEM_POOL.length)];
+  progress.cofresDisponibles -= 1;
+  saveTotalCompletadas(progress);
+
+  const autoEquipped = michiState.equipped[item.slot] === null;
+  if (autoEquipped) {
+    equipItem(item);
+  }
+
+  return { item, autoEquipped };
+}
+
+export function equipItem(item) {
+  const prev = michiState.equipped[item.slot];
+  if (prev) {
+    michiState[prev.stat] -= prev.bonus;
+  }
+  const newItem = { ...item };
+  michiState.equipped[item.slot] = newItem;
+  michiState[item.stat] += item.bonus;
+  saveMichiState();
+}
+
+export function getEquipped() {
+  return michiState.equipped;
 }
 
 export function filterQuests(estado) {

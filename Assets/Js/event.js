@@ -1,6 +1,6 @@
-import { patchState, addQuest, loadQuests, completeQuest, deleteQuest, incrementCompletadas, filterQuests } from "./state.js";
-import { renderAll, renderCssVariables, renderCat, renderQuestList, renderProgress, renderTabs } from "./render.js";
-import { inputs, modal, questList } from "./dom.js";
+import { patchState, addQuest, loadQuests, completeQuest, deleteQuest, incrementCompletadas, filterQuests, openChest, equipItem } from "./state.js";
+import { renderAll, renderCssVariables, renderCat, renderQuestList, renderProgress, renderTabs, renderEquippedItems, renderStats, renderRewardModal } from "./render.js";
+import { inputs, modal, questList, btnOpenChest } from "./dom.js";
 
 export function bindEvents() {
   if (inputs.primary) {
@@ -93,6 +93,35 @@ export function bindEvents() {
       renderQuestList(filterQuests(filter));
     });
   }
+
+  if (btnOpenChest) {
+    btnOpenChest.addEventListener("click", () => {
+      const result = openChest();
+      if (!result) return;
+      renderProgress();
+      if (result.autoEquipped) {
+        renderEquippedItems();
+        renderStats();
+      }
+      renderRewardModal(result.item, result.autoEquipped);
+    });
+  }
+
+  document.addEventListener("click", (e) => {
+    const overlay = document.querySelector(".reward-overlay");
+    if (!overlay) return;
+    if (e.target.id === "btn-close-reward" || e.target.id === "btn-discard-item") {
+      overlay.remove();
+    } else if (e.target.id === "btn-equip-item") {
+      const item = overlay._rewardItem;
+      if (item) {
+        equipItem(item);
+        renderEquippedItems();
+        renderStats();
+      }
+      overlay.remove();
+    }
+  });
 }
 
 export function openModal() {

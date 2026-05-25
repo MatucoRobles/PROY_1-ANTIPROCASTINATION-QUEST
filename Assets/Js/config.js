@@ -107,3 +107,5 @@ export const QUEST_BADGE_ICONS = Object.freeze({
 export const QUEST_PROGRESS_BASE = 5;
 
 export const PROGRESS_STORAGE_KEY = "apq_total_completadas";
+
+export const MICHI_STORAGE_KEY = "apq_michi_state";
