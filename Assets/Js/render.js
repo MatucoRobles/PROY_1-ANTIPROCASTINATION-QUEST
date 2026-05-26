@@ -1,6 +1,6 @@
 import { PIXEL_MAPS, COLOR_INDICES, CSS_VARS, PIXEL_SIZE_CONFIG, CAT_MAX_COLS, QUEST_BADGE_ICONS } from "./config.js";
 import { state, getProgress, michiState } from "./state.js";
-import { elements, questList } from "./dom.js";
+import { elements, questList, btnOpenChest, catWrapper, stats } from "./dom.js";
 
 export const COLORS = {
   0: "transparent",
@@ -69,9 +69,8 @@ export function renderCat() {
     }
   });
 
-  const wrapper = document.querySelector(".cat-wrapper");
-  if (wrapper) {
-    wrapper.style.setProperty("--pixel-size", `${pixelSize}px`);
+  if (catWrapper) {
+    catWrapper.style.setProperty("--pixel-size", `${pixelSize}px`);
   }
 }
 
@@ -90,11 +89,9 @@ export function syncColorsMap() {
 }
 
 export function updateAriaLabel() {
-  const wrapper = document.querySelector(".cat-wrapper");
-  if (!wrapper) return;
-
+  if (!catWrapper) return;
   const colorName = state.primary.replace("#", "").toUpperCase();
-  wrapper.setAttribute(
+  catWrapper.setAttribute(
     "aria-label",
     `Gato pixel art, color ${colorName}, escala ${state.scale}`
   );
@@ -123,17 +120,14 @@ export function renderEquippedItems() {
     img.className = `equipped-item equipped-${slot}`;
     img.dataset.slot = slot;
 
-    document.querySelector(".cat-wrapper")?.appendChild(img);
+    catWrapper?.appendChild(img);
   });
 }
 
 export function renderStats() {
-  const hpEl = document.querySelector("#stat-hp");
-  const atkEl = document.querySelector("#stat-atk");
-  const defEl = document.querySelector("#stat-def");
-  if (hpEl) hpEl.textContent = michiState.hp;
-  if (atkEl) atkEl.textContent = michiState.atk;
-  if (defEl) defEl.textContent = michiState.def;
+  if (stats.hp) stats.hp.textContent = michiState.hp;
+  if (stats.atk) stats.atk.textContent = michiState.atk;
+  if (stats.def) stats.def.textContent = michiState.def;
 }
 
 export function renderRewardModal(item, autoEquipped) {
@@ -253,7 +247,6 @@ export function renderProgress() {
   const { completadas, porcentaje, cofresDisponibles } = getProgress();
   const progressBar = document.querySelector("#main-progress-bar");
   const progressText = document.querySelector("#progress-text");
-  const btnOpenChest = document.querySelector("#btn-open-chest");
 
   if (progressBar) {
     progressBar.style.width = `${porcentaje}%`;

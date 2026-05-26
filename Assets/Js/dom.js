@@ -26,3 +26,11 @@ export const modal = Object.freeze({
 export const questList = document.querySelector("#quests-list");
 
 export const btnOpenChest = document.querySelector("#btn-open-chest");
+
+export const catWrapper = document.querySelector(".cat-wrapper");
+
+export const stats = Object.freeze({
+  hp: document.querySelector("#stat-hp"),
+  atk: document.querySelector("#stat-atk"),
+  def: document.querySelector("#stat-def"),
+});
