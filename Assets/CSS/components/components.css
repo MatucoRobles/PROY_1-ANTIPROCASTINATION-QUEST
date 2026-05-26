@@ -402,3 +402,81 @@
     border: var(--border-width-sm) dashed var(--parchment-dim);
     padding: var(--space-sm);
 }
+
+.rpg-main-container {
+    display: grid !important;
+    grid-template-areas: 
+        "inspeccion configurar"
+        "equipamiento almacen";
+    grid-template-columns: 1fr 1fr; 
+    gap: 20px;                      
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 30px;
+}
+
+.editor-pane, 
+.inventory-pane {
+    display: contents !important;
+}
+
+
+.live-preview-panel {
+    grid-area: inspeccion;
+    margin-bottom: 0 !important;
+    height: 100%; 
+}
+
+#pet-custom-form {
+    grid-area: configurar;
+    margin-bottom: 0 !important;
+    height: 100%;
+}
+
+.inventory-pane > section:nth-child(1) {
+    grid-area: equipamiento;
+    margin-bottom: 0 !important;
+    height: 100%;
+}
+.inventory-pane > section:nth-child(2) {
+    grid-area: almacen;
+    margin-bottom: 0 !important;
+    height: 100%;
+}
+
+
+.rpg-main-container {
+    display: grid !important;
+    grid-template-areas: 
+        "configurar inspeccion"  
+        "equipamiento almacen";
+    grid-template-columns: 1fr 1fr; 
+    gap: 20px;                      
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 30px;
+}
+
+.rpg-main-container {
+    display: grid !important;
+    grid-template-areas: 
+        "configurar inspeccion"
+        "almacen equipamiento";    
+    grid-template-columns: 1fr 1fr; 
+    gap: 20px;                      
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 30px;
+}
+
+
+@media (max-width: 900px) {
+    .rpg-main-container {
+        grid-template-areas: 
+            "configurar"
+            "inspeccion"
+            "almacen"
+            "equipamiento";
+        grid-template-columns: 1fr;
+    }
+}
