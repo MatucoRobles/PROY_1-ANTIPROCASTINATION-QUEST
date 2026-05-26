@@ -516,65 +516,26 @@ body {
 .hidden { display: none !important; }
 
 /* ==========================================================================
-   9. ADAPTACIÓN RESPONSIVE OBLIGATORIA (Media Queries Celulares)
-   ========================================================================== */
-@media (max-width: 768px) {
-    /* Las columnas de escritorio se rompen pasando a filas verticales compactas */
-    .rpg-main-container, .battle-layout-bottom-row {
-        flex-direction: column;
-        padding: 0 10px;
-    }
-    
-    .rpg-sidebar, .rpg-content-area, .setup-match-box, .combat-log-card {
-        width: 100%;
-        min-width: 100%;
-    }
-    
-    .rpg-navbar h1 { font-size: 26px; }
-    .rpg-nav ul { gap: 8px; }
-    .rpg-nav-link { padding: 4px 6px; font-size: 18px; }
-    
-    /* Achicamos la pantalla de pelea para que entre bien en el celu */
-    .battlefield-screen {
-        min-height: 240px;
-        padding: 20px 10px;
-    }
-    .fighter-sprite-display { font-size: 70px; }
-    .fighter-tag { font-size: 20px; }
-    .versus-shield { font-size: 30px; }
-    
-    /* Aumentamos las columnas de la mochila a 5 para que no desborde horizontalmente */
-    .rpg-inventory-grid {
-        grid-template-columns: repeat(5, 1fr);
-    }
-}
-
-
-/* ==========================================================================
-   BARRAS DE PROGRESO (Experiencia y Vida)
+   9. BARRAS DE PROGRESO Y ANIMACIONES
    ========================================================================== */
 .rpg-progress-frame {
-    background-color: var(--inner-bg); /* Fondo oscuro de la taberna */
-    border: 4px solid var(--parchment); /* Borde marrón para que combine */
+    background-color: var(--inner-bg); 
+    border: 4px solid var(--parchment); 
     height: 28px;
     position: relative;
     margin: 10px 0;
     width: 100%;
-    /* Sombra interna para que parezca hundido (efecto mazmorra) */
     box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5); 
 }
 
 .rpg-progress-fill {
     height: 100%;
     background-color: var(--stamina-green); 
-    width: 0%; /* Tus compañeros de JS cambiarán este valor */
-    /* Esta transición hace que la barra se llene suavemente, no de golpe */
+    width: 0%; 
     transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1); 
-    /* Brillo superior para darle ese toque 3D de los juegos de 16-bits */
     box-shadow: inset 0 4px 0 rgba(255, 255, 255, 0.2); 
 }
 
-/* Agrega esta clase cuando la barra llegue al 100% (¡Sube de nivel!) */
 .rpg-progress-fill.level-up {
     background-color: var(--gold);
     animation: pulse-glow 1.5s infinite alternate;
@@ -585,28 +546,141 @@ body {
     to { box-shadow: 0 0 15px var(--gold), inset 0 4px 0 rgba(255, 255, 255, 0.4); }
 }
 
-/* ==========================================================================
-   ANIMACIÓN DEL MICHI (Respiración e Idle)
-   ========================================================================== */
 .idle-animation {
-    /* Tiempo ajustado a 2s para que parezca que respira relajado */
     animation: michi-breathing 2s infinite alternate ease-in-out;
-    /* El origen abajo evita que flote raramente, respira desde el piso */
     transform-origin: bottom center; 
 }
 
 @keyframes michi-breathing {
-    /* Escala ligeramente en Y para simular el pecho inflándose */
     0% { transform: scaleY(1) scaleX(1) translateY(0); }
     100% { transform: scaleY(1.03) scaleX(0.98) translateY(-3px); }
 }
 
-/* Efecto hover para las cartas de misiones (Interactividad) */
 .quest-item-card {
     transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
 .quest-item-card:hover {
-    transform: translateY(-3px); /* Se levanta un poquito al pasar el mouse */
-    border-color: var(--gold); /* El borde brilla indicando que es clickeable */
+    transform: translateY(-3px); 
+    border-color: var(--gold); 
+}
+
+/* ==========================================================================
+   10. ESTADOS DE LAS MISIONES Y ACCESIBILIDAD
+   ========================================================================== */
+/* Estados de Misiones */
+.mision-pendiente {
+    opacity: 0.7;
+    border-color: var(--parchment-dim);
+    background-color: var(--box-bg);
+    filter: grayscale(30%);
+}
+
+.mision-activa {
+    opacity: 1;
+    border-color: var(--gold);
+    background-color: var(--box-bg);
+    box-shadow: inset 0 0 10px var(--gold-glow);
+}
+
+.mision-completada {
+    opacity: 0.6;
+    border-color: var(--stamina-green);
+    background-color: var(--inner-bg);
+}
+
+.mision-completada .quest-title {
+    text-decoration: line-through;
+    color: var(--parchment-dim);
+}
+
+.badge-estado {
+    padding: 2px 8px;
+    font-size: 14px;
+    text-transform: uppercase;
+    border: 1px solid;
+}
+
+.badge-pendiente { color: var(--parchment-dim); border-color: var(--parchment-dim); }
+.badge-activa { color: var(--gold); border-color: var(--gold); background-color: rgba(242, 138, 46, 0.1); }
+.badge-completada { color: var(--stamina-green); border-color: var(--stamina-green); }
+
+/* Accesibilidad y Mensajes de Validación del DOM */
+.btn-pixel:focus {
+    outline: 2px dashed var(--gold);
+    outline-offset: 4px;
+}
+
+.mensaje-error {
+    color: var(--hp-red);
+    font-size: 18px;
+    margin-top: 4px;
+    text-shadow: 1px 1px #000;
+    display: block;
+}
+
+.input-error {
+    border-color: var(--hp-red) !important;
+    background-color: rgba(242, 76, 61, 0.1);
+}
+
+/* ==========================================================================
+   11. ADAPTACIÓN RESPONSIVE OBLIGATORIA (Media Queries Celulares)
+   ========================================================================== */
+@media (max-width: 768px) {
+    .rpg-main-container, .battle-layout-bottom-row {
+        flex-direction: column;
+        padding: 0 10px;
+        gap: 15px;
+    }
+    
+    .rpg-sidebar, .rpg-content-area, .setup-match-box, .combat-log-card, .editor-pane, .inventory-pane {
+        width: 100%;
+        min-width: 100%;
+        flex: none; 
+    }
+    
+    .rpg-navbar h1 { font-size: 26px; }
+    .rpg-nav ul { flex-direction: column; gap: 8px; }
+    .rpg-nav-link { 
+        display: block;
+        padding: 8px; 
+        font-size: 20px; 
+        background-color: var(--inner-bg); 
+    }
+
+    .battlefield-screen {
+        min-height: 240px;
+        padding: 20px 10px;
+        flex-direction: column; 
+        gap: 20px;
+    }
+    
+    .arena-fighter { width: 100%; }
+    .fighter-sprite-display { font-size: 70px; }
+    .fighter-tag { font-size: 20px; }
+    .versus-shield { font-size: 30px; margin: 10px 0; }
+    
+    .rpg-inventory-grid {
+        grid-template-columns: repeat(4, 1fr); 
+        gap: 8px;
+    }
+    
+    .quest-item-card {
+        flex-direction: column; 
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .quest-info {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 480px) {
+    .rpg-inventory-grid {
+        grid-template-columns: repeat(3, 1fr); 
+    }
+    .rpg-box { padding: 10px; }
 }
