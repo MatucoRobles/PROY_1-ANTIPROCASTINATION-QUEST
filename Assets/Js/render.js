@@ -2,7 +2,7 @@ import { PIXEL_MAPS, COLOR_INDICES, CSS_VARS, PIXEL_SIZE_CONFIG, CAT_MAX_COLS, Q
 import { state, getProgress, michiState } from "./state.js";
 import { elements, questList, btnOpenChest, catWrapper, stats } from "./dom.js";
 
-export const COLORS = {
+const COLORS = {
   0: "transparent",
   1: "#000000",
   2: "#ffffff",

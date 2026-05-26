@@ -53,11 +53,6 @@ export function patchState(partial) {
   saveState();
 }
 
-export function resetState() {
-  Object.assign(state, DEFAULT_STATE);
-  saveState();
-}
-
 export function loadQuests() {
   try {
     const stored = localStorage.getItem(QUEST_STORAGE_KEY);
@@ -195,10 +190,6 @@ export function equipItem(item) {
   michiState.equipped[item.slot] = newItem;
   michiState[item.stat] += item.bonus;
   saveMichiState();
-}
-
-export function getEquipped() {
-  return michiState.equipped;
 }
 
 export function filterQuests(estado) {
