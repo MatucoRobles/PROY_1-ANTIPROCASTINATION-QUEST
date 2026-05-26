@@ -480,3 +480,60 @@
         grid-template-columns: 1fr;
     }
 }
+
+.rpg-inventory-grid li:only-child, 
+.full-width-item {
+    grid-column: 1 / -1 !important; 
+    text-align: center;
+    width: 100%;
+    padding: 30px 20px !important;
+    box-sizing: border-box;
+    font-size: var(--font-size-md) !important; 
+    color: var(--parchment) !important;       
+}
+
+
+.rpg-slots-wrapper {
+    display: flex !important;
+    justify-content: center !important; 
+    gap: 25px !important;               
+    width: 100%;
+    align-items: center;
+    padding-top: 15px;
+}
+
+.rpg-slots-wrapper .rpg-item-slot {
+    flex: 0 0 auto !important;
+    width: 110px !important;   
+    height: 110px !important;  
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.rpg-slots-wrapper .slot-icon-container {
+    width: 65px !important;
+    height: 65px !important;
+    margin: 0 auto;            
+}
+
+
+.rpg-slots-wrapper .slot-title {
+    font-size: var(--font-size-md) !important; 
+    text-align: center;
+    width: 100%;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.rpg-slots-wrapper .slot-icon-container {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+.rpg-slots-wrapper .slot-status {
+    margin: 0 !important;
+    line-height: 1 !important;
+}
