@@ -1,5 +1,5 @@
 import { PIXEL_MAPS, COLOR_INDICES, CSS_VARS, PIXEL_SIZE_CONFIG, CAT_MAX_COLS, QUEST_BADGE_ICONS, ICON_IMG_MAP } from "./config.js";
-import { state, getProgress, michiState } from "./state.js";
+import { state, getProgress, michiState, isInventoryFull } from "./state.js";
 import { elements, questList, btnOpenChest, catWrapper, stats } from "./dom.js";
 
 const COLORS = {
@@ -252,9 +252,28 @@ export function renderProgress() {
   if (progressText) {
     progressText.textContent = `${porcentaje}% Completado (${completadas} Misiones)`;
   }
-  if (btnOpenChest) {
-    btnOpenChest.disabled = cofresDisponibles <= 0;
+  renderChestButton(cofresDisponibles);
+}
+
+export function renderChestButton(cofresDisponibles) {
+  const btn = btnOpenChest;
+  const container = btn?.parentElement;
+  if (!btn || !container) return;
+
+  const existing = container.querySelector(".inventory-full-msg");
+  if (existing) existing.remove();
+
+  if (isInventoryFull()) {
+    btn.classList.add("hidden");
+    const msg = document.createElement("p");
+    msg.className = "pixel-subtext inventory-full-msg";
+    msg.textContent = "INVENTARIO COMPLETO";
+    container.appendChild(msg);
+    return;
   }
+
+  btn.classList.remove("hidden");
+  btn.disabled = cofresDisponibles <= 0;
 }
 
 export function renderTabs(activeFilter) {

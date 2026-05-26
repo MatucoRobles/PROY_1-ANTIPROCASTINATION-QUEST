@@ -390,3 +390,10 @@
     min-width: 280px;
     max-width: 400px;
 }
+
+.inventory-full-msg {
+    text-align: center;
+    color: var(--parchment-dim);
+    border: var(--border-width-sm) dashed var(--parchment-dim);
+    padding: var(--space-sm);
+}

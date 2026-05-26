@@ -39,7 +39,7 @@ export const ARMORS = Object.freeze([
   createItem("mage_armor", "Bata de Mago", ITEM_SLOTS.ARMOR, "def", ARMOR_FOLDER + "mage_armor.png"),
   createItem("mesh_armor", "Armadura de Malla", ITEM_SLOTS.ARMOR, "def", ARMOR_FOLDER + "mesh_armor.png"),
   createItem("red_mage_armor", "Bata de Mago Rojo", ITEM_SLOTS.ARMOR, "def", ARMOR_FOLDER + "red_mage_armor.png"),
-  createItem("thief_armor", "Ropa de Ladron", ITEM_SLOTS.ARMOR, "def", ARMOR_FOLDER + "thief_amor.png"),
+  createItem("thief_armor", "Ropa de Ladron", ITEM_SLOTS.ARMOR, "def", ARMOR_FOLDER + "thief_armor.png"),
   createItem("torturer_armor", "Armadura de Verdugo", ITEM_SLOTS.ARMOR, "def", ARMOR_FOLDER + "torturer_armor.png"),
 ]);
 

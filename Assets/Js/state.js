@@ -1,4 +1,4 @@
-import { DEFAULT_STATE, SCALE_CONFIG, STORAGE_KEY, QUEST_STORAGE_KEY, QUEST_ESTADOS, QUEST_PROGRESS_BASE, PROGRESS_STORAGE_KEY, MICHI_STORAGE_KEY } from "./config.js";
+import { DEFAULT_STATE, SCALE_CONFIG, STORAGE_KEY, QUEST_STORAGE_KEY, QUEST_ESTADOS, QUEST_PROGRESS_BASE, PROGRESS_STORAGE_KEY, MICHI_STORAGE_KEY, INVENTORY_STORAGE_KEY } from "./config.js";
 import { ITEM_POOL } from "./items.config.js";
 
 export const state = { ...DEFAULT_STATE };
@@ -171,18 +171,51 @@ export function saveMichiState() {
   localStorage.setItem(MICHI_STORAGE_KEY, JSON.stringify(michiState));
 }
 
+export function loadInventory() {
+  try {
+    const stored = localStorage.getItem(INVENTORY_STORAGE_KEY);
+    if (!stored) return [];
+    const parsed = JSON.parse(stored);
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
+  }
+}
+
+export function saveInventory(ids) {
+  localStorage.setItem(INVENTORY_STORAGE_KEY, JSON.stringify(ids));
+}
+
+export function addToInventory(itemId) {
+  const inventory = loadInventory();
+  if (!inventory.includes(itemId)) {
+    inventory.push(itemId);
+    saveInventory(inventory);
+  }
+}
+
+export function getAvailablePool() {
+  const inventory = loadInventory();
+  return ITEM_POOL.filter((item) => !inventory.includes(item.id));
+}
+
+export function isInventoryFull() {
+  return getAvailablePool().length === 0;
+}
+
 export function openChest() {
   const progress = loadTotalCompletadas();
   if (progress.cofresDisponibles <= 0) return null;
+  if (isInventoryFull()) return null;
 
-  const item = ITEM_POOL[Math.floor(Math.random() * ITEM_POOL.length)];
+  const pool = getAvailablePool();
+  const item = pool[Math.floor(Math.random() * pool.length)];
   progress.cofresDisponibles -= 1;
   saveTotalCompletadas(progress);
+  addToInventory(item.id);
 
   const autoEquipped = michiState.equipped[item.slot] === null;
-  if (autoEquipped) {
-    equipItem(item);
-  }
+  if (autoEquipped) equipItem(item);
 
   return { item, autoEquipped };
 }
