@@ -54,12 +54,6 @@ export const COLOR_INDICES = Object.freeze({
   accent: 6,
 });
 
-export const DEFAULT_COLORS = Object.freeze({
-  primary: "#ffb347",
-  shadow: "#e6953b",
-  light: "#ffd08a",
-});
-
 export const DEFAULT_STATE = Object.freeze({
   primary: "#ffb347",
   shadow: "#e6953b",
@@ -102,6 +96,12 @@ export const QUEST_BADGE_ICONS = Object.freeze({
   pendiente: "hourglass",
   activa: "helmet",
   completada: "complete",
+});
+
+export const ICON_IMG_MAP = Object.freeze({
+  helmet: "Assets/Images/icons/helmet.png",
+  hourglass: "Assets/Images/icons/hourglass.png",
+  complete: "Assets/Images/icons/complete.png",
 });
 
 export const QUEST_PROGRESS_BASE = 5;

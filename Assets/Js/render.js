@@ -1,4 +1,4 @@
-import { PIXEL_MAPS, COLOR_INDICES, CSS_VARS, PIXEL_SIZE_CONFIG, CAT_MAX_COLS, QUEST_BADGE_ICONS } from "./config.js";
+import { PIXEL_MAPS, COLOR_INDICES, CSS_VARS, PIXEL_SIZE_CONFIG, CAT_MAX_COLS, QUEST_BADGE_ICONS, ICON_IMG_MAP } from "./config.js";
 import { state, getProgress, michiState } from "./state.js";
 import { elements, questList, btnOpenChest, catWrapper, stats } from "./dom.js";
 
@@ -190,14 +190,7 @@ export function renderRewardModal(item, autoEquipped) {
   document.body.appendChild(overlay);
 }
 
-const ICON_IMG_MAP = Object.freeze({
-  helmet: "Assets/Images/icons/helmet.png",
-  hourglass: "Assets/Images/icons/hourglass.png",
-  complete: "Assets/Images/icons/complete.png",
-  failed: "Assets/Images/icons/failed.png",
-});
-
-function getIconImg(iconKey, alt, width = 14, height = 14) {
+export function getIconImg(iconKey, alt, width = 14, height = 14) {
   const src = ICON_IMG_MAP[iconKey];
   if (!src) return "";
   return `<img src="${src}" alt="${alt}" class="rpg-icon-img" width="${width}" height="${height}">`;
