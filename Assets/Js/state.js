@@ -134,7 +134,13 @@ export function saveTotalCompletadas(obj) {
 
 export function incrementCompletadas() {
   const current = loadTotalCompletadas();
-  const updated = { misionesCompletas: current.misionesCompletas + 1, cofresDisponibles: current.cofresDisponibles + 1 };
+  const nuevasMisiones = current.misionesCompletas + 1;
+  const cofresGanados = Math.floor(nuevasMisiones / QUEST_PROGRESS_BASE);
+  const cofresAbiertos = Math.floor(current.misionesCompletas / QUEST_PROGRESS_BASE) - current.cofresDisponibles;
+  const updated = {
+    misionesCompletas: nuevasMisiones,
+    cofresDisponibles: cofresGanados - cofresAbiertos,
+  };
   saveTotalCompletadas(updated);
 }
 
