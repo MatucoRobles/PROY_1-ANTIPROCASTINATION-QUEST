@@ -26,24 +26,33 @@
             
             <form id="pet-custom-form" class="rpg-box rpg-form">
                 <h2 class="rpg-box-title">⚙️ CONFIGURAR COMPAÑERO</h2>
+                
                 <p class="rpg-form-group">
                     <label for="pet-name">> APODO:</label>
                     <input type="text" id="pet-name" class="pixel-input" maxlength="20" placeholder="Ej: MichiZ">
                 </p>
+
                 <p class="rpg-form-group">
-                    <label for="pet-type">> RAZA EVOLUTIVA:</label>
-                    <select id="pet-type" class="pixel-select">
-                        <option value="siames">Siamés 🐈 (+ Agilidad/Atk)</option>
-                        <option value="persa">Persa 🐱 (+ Defensa)</option>
-                        <option value="angora">Angora 🤍 (Equilibrado)</option>
-                        <option value="bengala">Bengala 🐯 (+ Puntos de Vida)</option>
-                    </select>
+                    <label for="cat-primary">> COLOR PRINCIPAL:</label>
+                    <input type="color" id="cat-primary" class="pixel-color-picker" value="#ffb347">
                 </p>
+
                 <p class="rpg-form-group">
-                    <label for="pet-color">> TINTE DE PELAJE:</label>
-                    <input type="color" id="pet-color" class="pixel-color-picker" value="#f0a500">
+                    <label for="cat-shadow">> COLOR SOMBRA:</label>
+                    <input type="color" id="cat-shadow" class="pixel-color-picker" value="#e6953b">
                 </p>
-                <button type="submit" class="btn-pixel btn-green block-button">GUARDAR MATRIZ</button>
+
+                <p class="rpg-form-group">
+                    <label for="cat-light">> COLOR REFLEJO:</label>
+                    <input type="color" id="cat-light" class="pixel-color-picker" value="#ffd08a">
+                </p>
+
+                <p class="rpg-form-group">
+                    <label for="cat-scale">> TAMAÑO (ESCALA):</label>
+                    <input type="range" id="cat-scale" min="0.5" max="3" step="0.1" value="1" class="pixel-input">
+                </p>
+
+                <button type="submit" id="btn-save-michi" class="btn-pixel btn-green block-button">GUARDAR MATRIZ</button>
             </form>
 
             <section class="rpg-box live-preview-panel">
@@ -87,21 +96,29 @@
             <section class="rpg-box">
                 <h2 class="rpg-box-title">🛡️ EQUIPAMIENTO ACTUAL</h2>
                 <ul class="rpg-slots-wrapper">
-                    <li class="rpg-item-slot pixel-border-inner" data-slot="sombrero">
+                    <li class="rpg-item-slot pixel-border-inner" data-slot="hat">
                         <span class="slot-title">CABEZA</span>
-                        <span id="slot-sombrero-current" class="slot-status empty">VACÍO</span>
+                        <div id="slot-hat-container" class="slot-icon-container">
+                            <span id="slot-hat-current" class="slot-status empty">VACÍO</span>
+                        </div>
                     </li>
-                    <li class="rpg-item-slot pixel-border-inner" data-slot="arma">
+
+                    <li class="rpg-item-slot pixel-border-inner" data-slot="weapon">
                         <span class="slot-title">ARMA</span>
-                        <span id="slot-arma-current" class="slot-status empty">VACÍO</span>
+                        <div id="slot-weapon-container" class="slot-icon-container">
+                            <span id="slot-weapon-current" class="slot-status empty">VACÍO</span>
+                        </div>
                     </li>
-                    <li class="rpg-item-slot pixel-border-inner" data-slot="pechera">
+
+                    <li class="rpg-item-slot pixel-border-inner" data-slot="armor">
                         <span class="slot-title">PECHO</span>
-                        <span id="slot-pechera-current" class="slot-status empty">VACÍO</span>
+                        <div id="slot-armor-container" class="slot-icon-container">
+                            <span id="slot-armor-current" class="slot-status empty">VACÍO</span>
+                        </div>
                     </li>
                 </ul>
             </section>
-
+            
             <section class="rpg-box">
                 <h2 class="rpg-box-title">🎒 ALMACÉN / INVENTARIO</h2>
                 <ul id="inventory-grid" class="rpg-inventory-grid">
