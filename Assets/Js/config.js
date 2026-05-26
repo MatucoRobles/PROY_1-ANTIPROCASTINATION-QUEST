@@ -96,9 +96,9 @@ export const QUEST_BADGE_ICONS = Object.freeze({
 });
 
 export const ICON_IMG_MAP = Object.freeze({
-  helmet: "Assets/Images/icons/helmet.png",
-  hourglass: "Assets/Images/icons/hourglass.png",
-  complete: "Assets/Images/icons/complete.png",
+  helmet: "/Assets/Images/icons/helmet.png",
+  hourglass: "/Assets/Images/icons/hourglass.png",
+  complete: "/Assets/Images/icons/complete.png",
 });
 
 export const QUEST_PROGRESS_BASE = 5;

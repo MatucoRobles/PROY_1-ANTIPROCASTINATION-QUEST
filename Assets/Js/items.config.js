@@ -4,9 +4,9 @@ export const ITEM_SLOTS = Object.freeze({
   HAT: "hat",
 });
 
-const WEAPON_FOLDER = "Assets/Images/items/weapon/";
-const ARMOR_FOLDER = "Assets/Images/items/armor/";
-const HAT_FOLDER = "Assets/Images/items/hat/";
+const WEAPON_FOLDER = "/Assets/Images/items/weapon/";
+const ARMOR_FOLDER = "/Assets/Images/items/armor/";
+const HAT_FOLDER = "/Assets/Images/items/hat/";
 
 const createItem = (id, nombre, slot, stat, img, bonus = 1) => ({
   id,

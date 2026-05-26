@@ -71,8 +71,9 @@
     z-index: 2;
     pointer-events: none;
     image-rendering: pixelated;
+    font-size: 0;
 }
 
-.equipped-hat    { bottom: calc(12 * var(--pixel-size));   left: 0;  width: 100%; }
-.equipped-armor  { top: calc(16 * var(--pixel-size)); left: var(--pixel-size);  width: 82.5%; }
-.equipped-weapon { top: calc(8 * var(--pixel-size)); left: calc(18 * var(--pixel-size)); width: 100%; }
+.equipped-hat    { bottom: calc(12 * var(--pixel-size)); left: 0;                         width: calc(17 * var(--pixel-size)); }
+.equipped-armor  { top: calc(16 * var(--pixel-size));    left: var(--pixel-size);          width: calc(14 * var(--pixel-size)); }
+.equipped-weapon { top: calc(8 * var(--pixel-size));     left: calc(18 * var(--pixel-size)); width: calc(16 * var(--pixel-size));  }
