@@ -130,7 +130,7 @@ export function renderStats() {
   if (stats.def) stats.def.textContent = michiState.def;
 }
 
-export function renderRewardModal(item, autoEquipped) {
+export function renderRewardModal(item, autoEquipped, onEquip) {
   const existing = document.querySelector(".reward-overlay");
   if (existing) existing.remove();
 
@@ -154,6 +154,7 @@ export function renderRewardModal(item, autoEquipped) {
   closeBtn.className = "btn-pixel btn-green";
   closeBtn.id = "btn-close-reward";
   closeBtn.textContent = "CERRAR";
+  closeBtn.addEventListener("click", () => overlay.remove());
 
   const buttonsDiv = document.createElement("div");
   buttonsDiv.appendChild(closeBtn);
@@ -171,11 +172,16 @@ export function renderRewardModal(item, autoEquipped) {
     equipBtn.className = "btn-pixel btn-green";
     equipBtn.id = "btn-equip-item";
     equipBtn.textContent = "EQUIPAR";
+    equipBtn.addEventListener("click", () => {
+      onEquip(item);
+      overlay.remove();
+    });
 
     const discardBtn = document.createElement("button");
     discardBtn.className = "btn-pixel btn-red";
     discardBtn.id = "btn-discard-item";
     discardBtn.textContent = "DESCARTAR";
+    discardBtn.addEventListener("click", () => overlay.remove());
 
     modalBox.appendChild(title);
     modalBox.appendChild(name);
@@ -186,7 +192,6 @@ export function renderRewardModal(item, autoEquipped) {
 
   modalBox.appendChild(buttonsDiv);
   overlay.appendChild(modalBox);
-  overlay._rewardItem = item;
   document.body.appendChild(overlay);
 }
 

@@ -103,25 +103,13 @@ export function bindEvents() {
         renderEquippedItems();
         renderStats();
       }
-      renderRewardModal(result.item, result.autoEquipped);
-    });
-  }
-
-  document.addEventListener("click", (e) => {
-    const overlay = document.querySelector(".reward-overlay");
-    if (!overlay) return;
-    if (e.target.id === "btn-close-reward" || e.target.id === "btn-discard-item") {
-      overlay.remove();
-    } else if (e.target.id === "btn-equip-item") {
-      const item = overlay._rewardItem;
-      if (item) {
+      renderRewardModal(result.item, result.autoEquipped, (item) => {
         equipItem(item);
         renderEquippedItems();
         renderStats();
-      }
-      overlay.remove();
-    }
-  });
+      });
+    });
+  }
 }
 
 export function openModal() {
