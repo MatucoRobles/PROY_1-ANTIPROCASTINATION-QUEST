@@ -44,6 +44,11 @@
     box-shadow: var(--shadow-btn);
     box-sizing: border-box;
     max-width: 100%;
+    transition: transform var(--transition-fast);
+}
+
+.btn-pixel:hover {
+    transform: translate(-0.1rem, -0.1rem);
 }
 
 .btn-pixel:active {
