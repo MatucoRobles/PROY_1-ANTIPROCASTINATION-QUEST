@@ -1,7 +1,7 @@
 import { PIXEL_MAPS, COLOR_INDICES, CSS_VARS, PIXEL_SIZE_CONFIG, CAT_MAX_COLS, QUEST_BADGE_ICONS, ICON_IMG_MAP } from "./config.js";
-import { state, getProgress, michiState, isInventoryFull } from "./state.js";
+import { state, getProgress, michiState, isInventoryFull, loadInventory, equipItem } from "./state.js"; 
 import { elements, questList, btnOpenChest, catWrapper, stats } from "./dom.js";
-
+import { ITEM_POOL } from "./items.config.js";
 const COLORS = {
   0: "transparent",
   1: "#000000",
@@ -284,5 +284,78 @@ export function renderTabs(activeFilter) {
     } else {
       tab.classList.remove("active");
     }
+  });
+}
+
+// --- RENDERIZADO DE LA UI DE EQUIPAMIENTO E INVENTARIO ---
+
+export function renderEquipmentUI() {
+  const slots = ["hat", "weapon", "armor"];
+  
+  slots.forEach(slotType => {
+      const container = document.querySelector(`#slot-${slotType}-container`);
+      if (!container) return; 
+      
+      const item = michiState.equipped[slotType];
+      container.innerHTML = ""; 
+      
+      if (item) {
+          const img = document.createElement("img");
+          img.src = item.img;
+          img.title = item.nombre;
+          
+          // FORZAMOS A LA IMAGEN A LLENAR EL CUADRADO
+          img.style.width = "100%";
+          img.style.height = "100%";
+          img.style.objectFit = "contain";
+          img.style.imageRendering = "pixelated";
+          
+          container.appendChild(img);
+      } else {
+          container.innerHTML = '<span class="slot-status empty">VACÍO</span>';
+      }
+  });
+}
+
+export function renderInventoryUI() {
+  const grid = document.querySelector("#inventory-grid");
+  if (!grid) return; 
+
+  const inventoryIds = loadInventory();
+  grid.innerHTML = "";
+
+  if (inventoryIds.length === 0) {
+      grid.innerHTML = '<li class="full-width-item">Sin artefactos en la mochila. ¡Completa misiones para farmear equipamiento!</li>';
+      return;
+  }
+
+  inventoryIds.forEach(id => {
+      const item = ITEM_POOL.find(i => i.id === id);
+      if (!item) return;
+
+      const li = document.createElement("li");
+      li.className = "rpg-item-slot pixel-border-inner";
+      
+      const isEquipped = Object.values(michiState.equipped).some(eq => eq && eq.id === id);
+      if (isEquipped) {
+          li.style.borderColor = "var(--stamina-green)"; 
+          li.style.opacity = "0.6";
+      }
+
+      li.innerHTML = `
+          <div class="slot-icon-container" style="border:none; box-shadow:none; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;">
+              <img src="${item.img}" title="${item.nombre}" alt="${item.nombre}" style="cursor:pointer; width:90%; height:90%; object-fit:contain; image-rendering:pixelated;">
+          </div>
+      `;
+      
+      li.addEventListener("click", () => {
+          equipItem(item); 
+          renderEquipmentUI(); 
+          renderEquippedItems(); 
+          renderStats(); 
+          renderInventoryUI(); 
+      });
+      
+      grid.appendChild(li);
   });
 }
