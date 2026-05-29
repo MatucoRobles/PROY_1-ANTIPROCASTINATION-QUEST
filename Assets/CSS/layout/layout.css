@@ -58,6 +58,9 @@
 }
 
 .arena-fighter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
     width: 40%;
 }
@@ -175,6 +178,12 @@
     .battlefield-screen {
         min-height: 240px;
         padding: var(--space-xl) var(--space-sm);
+        flex-direction: column;
+        gap: var(--space-xl);
+    }
+
+    .arena-fighter {
+        width: 100%;
     }
 
     .fighter-sprite-display {

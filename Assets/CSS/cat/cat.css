@@ -23,8 +23,9 @@
 }
 
 .fighter-sprite-display {
+    width: max-content;
+    margin: var(--space-base) auto;
     font-size: var(--font-size-fighter);
-    margin: var(--space-base) 0;
 }
 
 .pixel-sprite-overlay {
