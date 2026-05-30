@@ -302,14 +302,9 @@ export function renderEquipmentUI() {
       if (item) {
           const img = document.createElement("img");
           img.src = item.img;
+          img.alt = item.nombre;
           img.title = item.nombre;
-          
-          // FORZAMOS A LA IMAGEN A LLENAR EL CUADRADO
-          img.style.width = "100%";
-          img.style.height = "100%";
-          img.style.objectFit = "contain";
-          img.style.imageRendering = "pixelated";
-          
+          img.className = "slot-item-img";
           container.appendChild(img);
       } else {
           container.innerHTML = '<span class="slot-status empty">VACÍO</span>';
@@ -343,8 +338,8 @@ export function renderInventoryUI() {
       }
 
       li.innerHTML = `
-          <div class="slot-icon-container" style="border:none; box-shadow:none; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;">
-              <img src="${item.img}" title="${item.nombre}" alt="${item.nombre}" style="cursor:pointer; width:90%; height:90%; object-fit:contain; image-rendering:pixelated;">
+          <div class="slot-icon-container">
+              <img src="${item.img}" title="${item.nombre}" alt="${item.nombre}" class="slot-item-img inventory-item-img">
           </div>
       `;
       

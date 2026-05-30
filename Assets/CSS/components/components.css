@@ -186,12 +186,7 @@
 .rpg-item-slot {
     width: var(--size-slot-md);
     height: var(--size-slot-md);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     padding: var(--space-xs);
-    font-size: var(--font-size-xxs);
     list-style: none;
 }
 
@@ -201,7 +196,7 @@
 }
 
 .slot-title {
-    font-size: 11px;
+    font-size: var(--font-size-xs);
     color: var(--gold);
     margin-bottom: 2px;
 }
@@ -468,64 +463,79 @@
 
 /* --- 3. EQUIPAMIENTO: Cuadrados más grandes --- */
 .rpg-slots-wrapper {
-    display: flex !important;
-    justify-content: center !important; 
-    gap: 20px !important;               
-    width: 100% !important;
-    align-items: center !important;
-    padding-top: 15px !important;
+    display: flex ;
+    justify-content: center; 
+    gap: 20px;               
+    width: 100%;
+    align-items: center;
+    padding-top: 15px;
 }
 
 .rpg-slots-wrapper .rpg-item-slot {
-    flex: 0 0 auto !important;
-    width: 140px !important;   /* Aumentamos el tamaño (antes 110px) */
-    height: 140px !important;  /* Aumentamos el tamaño (antes 110px) */
-    box-sizing: border-box !important;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: space-between !important; /* Separa mejor el título del centro */
-    align-items: center !important;
-    padding: 15px 10px !important;
+    flex: 0 0 auto;
+    width: 100px;   /* Aumentamos el tamaño (antes 110px) */
+    height: 100px;  /* Aumentamos el tamaño (antes 110px) */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Separa mejor el título del centro */
+    align-items: center;
+    padding: 15px 10px;
 }
 
 /* Caja interior más grande para la espada o el texto */
 .rpg-slots-wrapper .slot-icon-container {
-    width: 85px !important;    /* Aumentamos el interior (antes 65px) */
-    height: 85px !important;   /* Aumentamos el interior (antes 65px) */
-    position: relative !important; 
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    margin: 0 auto !important;
+    width: 85px;    /* Aumentamos el interior (antes 65px) */
+    height: 85px;   /* Aumentamos el interior (antes 65px) */
+    position: relative; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Texto de "VACÍO" centrado reforzado */
 .rpg-slots-wrapper .slot-status {
-    position: absolute !important;
-    top: 50% !important;
-    left: 50% !important;
-    transform: translate(-50%, -50%) !important;
-    margin: 0 !important;
-    width: 100% !important;
-    text-align: center !important;
-    font-size: var(--font-size-md) !important;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    width: 100%;
+    text-align: center;
+    font-size: var(--font-size-md);
 }
 
 /* --- 4. ALMACÉN / INVENTARIO --- */
 .rpg-inventory-grid {
-    display: grid !important;
-    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)) !important; 
-    gap: 15px !important;
-    width: 100% !important;
+    display: flex;
+    flex-wrap: wrap;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); 
+    gap: 25px;
+    width: 100%;
 }
 
 /* ¡CORRECCIÓN ACÁ! Solo aplicamos el ancho total al mensaje de texto, NUNCA a los ítems */
 .rpg-inventory-grid .full-width-item {
-    grid-column: 1 / -1 !important; 
-    text-align: center !important;
-    width: 100% !important;
-    padding: 20px !important;
-    box-sizing: border-box !important;
-    font-size: var(--font-size-md) !important; 
-    color: var(--parchment) !important;       
+    grid-column: 1 / -1; 
+    text-align: center;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    font-size: var(--font-size-md); 
+    color: var(--parchment);       
+}
+
+.slot-item-img {
+    width: 70%;
+    height: 70%;
+    object-fit: contain;
+    image-rendering: pixelated;
+    display: block;
+    margin: auto;
+}
+    
+.inventory-item-img {
+    cursor: pointer;
+    width: 90%;
+    height: 90%;
 }
