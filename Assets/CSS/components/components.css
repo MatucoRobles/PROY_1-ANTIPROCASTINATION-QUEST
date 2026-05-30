@@ -403,18 +403,6 @@
     padding: var(--space-sm);
 }
 
-.rpg-main-container {
-    display: grid !important;
-    grid-template-areas: 
-        "inspeccion configurar"
-        "equipamiento almacen";
-    grid-template-columns: 1fr 1fr; 
-    gap: 20px;                      
-    max-width: 1200px;
-    margin: 0 auto;
-    padding-bottom: 30px;
-}
-
 .editor-pane, 
 .inventory-pane {
     display: contents !important;
@@ -444,18 +432,6 @@
     height: 100%;
 }
 
-
-.rpg-main-container {
-    display: grid !important;
-    grid-template-areas: 
-        "configurar inspeccion"  
-        "equipamiento almacen";
-    grid-template-columns: 1fr 1fr; 
-    gap: 20px;                      
-    max-width: 1200px;
-    margin: 0 auto;
-    padding-bottom: 30px;
-}
 
 .rpg-main-container {
     display: grid !important;
