@@ -101,11 +101,12 @@
 
 .terminal-log-output {
     display: block;
-    height: 95px;
+    height: 300px;
     overflow-y: auto;
     font-family: monospace;
     font-size: var(--font-size-xs);
     color: var(--color-terminal-green);
+    scroll-behavior: smooth;
 }
 
 .rpg-export-container {
@@ -210,6 +211,10 @@
     .btn-pixel.small .rpg-icon-img {
         width: 16px;
         height: 16px;
+    }
+
+    .terminal-log-output {
+        height: 200px;
     }
 }
 

@@ -128,20 +128,21 @@ btnLoad.addEventListener("click", (e) => {
   logBattle("Rival cargado correctamente.");
 });
 
-btnStart.addEventListener("click", () => {
+btnStart.addEventListener("click", async () => {
   if (!rivalMichi) {
     alert("Primero carga un rival.");
     return;
   }
+  btnStart.disabled = true;
   clearLog();
-  // Nos aseguramos de proveer valores predeterminados para el combate si el michi local no los tiene definidos
   const localFighter = { ...michiState, hp: michiState.hp || 100, atk: michiState.atk || 10, def: michiState.def || 5 };
-  simulateBattle(
+  await simulateBattle(
     localFighter,
     rivalMichi,
     (msg) => logBattle(msg),
     (localHP, rivalHP) => updateHP(localHP, rivalHP, localFighter.hp, rivalMichi.hp)
   );
+  btnStart.disabled = false;
 });
 
 // Exportar código del michi local (para copiar en personalización)
