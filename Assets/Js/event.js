@@ -24,13 +24,6 @@ export function bindEvents() {
     });
   }
 
-  if (inputs.scale) {
-    inputs.scale.addEventListener("input", (e) => {
-      patchState({ scale: parseFloat(e.target.value) });
-      renderCssVariables();
-    });
-  }
-
   let resizeTimeout;
   window.addEventListener("resize", () => {
     clearTimeout(resizeTimeout);

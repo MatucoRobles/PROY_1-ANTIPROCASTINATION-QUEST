@@ -8,7 +8,6 @@ export const inputs = Object.freeze({
   primary: document.querySelector("#cat-primary"),
   shadow: document.querySelector("#cat-shadow"),
   light: document.querySelector("#cat-light"),
-  scale: document.querySelector("#cat-scale"),
 });
 
 export const modal = Object.freeze({
