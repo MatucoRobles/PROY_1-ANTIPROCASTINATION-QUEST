@@ -39,6 +39,10 @@
   transform-origin: top center;
 }
 
+.player-opponent .cat-wrapper {
+  transform: scaleX(-1) scale(var(--cat-scale));
+}
+
 .head {
   width: calc(17 * var(--pixel-size));
   height: calc(16 * var(--pixel-size));
