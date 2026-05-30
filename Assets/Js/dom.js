@@ -33,3 +33,8 @@ export const stats = Object.freeze({
   atk: document.querySelector("#stat-atk"),
   def: document.querySelector("#stat-def"),
 });
+
+export const petForm = Object.freeze({
+  nombre: document.querySelector("#pet-name"),
+  btnSave: document.querySelector("#btn-save-michi"),
+});

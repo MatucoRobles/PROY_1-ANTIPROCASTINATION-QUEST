@@ -33,6 +33,9 @@ export function importMichiCode(json) {
     rival.hp = typeof rival.hp === "number" && !isNaN(rival.hp) ? rival.hp : 100;
     rival.atk = typeof rival.atk === "number" && !isNaN(rival.atk) ? rival.atk : 10;
     rival.def = typeof rival.def === "number" && !isNaN(rival.def) ? rival.def : 5;
+    rival.nombre = typeof rival.nombre === "string" && rival.nombre.trim().length > 0
+      ? rival.nombre.trim().slice(0, 20)
+      : "RIVAL_MICHI";
     return rival;
   } catch {
     return null;

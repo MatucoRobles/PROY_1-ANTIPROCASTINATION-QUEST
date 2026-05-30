@@ -97,11 +97,17 @@ export function updateAriaLabel() {
   );
 }
 
+export function renderMichiName() {
+  const nameEls = document.querySelectorAll(".michi-name-display");
+  nameEls.forEach(el => el.textContent = state.nombre);
+}
+
 export function renderAll() {
   renderCssVariables();
   syncColorsMap();
   renderCat();
   updateAriaLabel();
+  renderMichiName();
   renderEquippedItems();
   renderStats();
 }

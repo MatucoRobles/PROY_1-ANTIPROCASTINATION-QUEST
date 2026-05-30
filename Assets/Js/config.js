@@ -59,7 +59,10 @@ export const DEFAULT_STATE = Object.freeze({
   shadow: "#e6953b",
   light: "#ffd08a",
   scale: 1,
+  nombre: "MICHI_HERO",
 });
+
+export const MICHI_NAME_MAX_LENGTH = 20;
 
 export const SCALE_CONFIG = Object.freeze({
   min: 0.5,

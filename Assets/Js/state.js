@@ -1,4 +1,4 @@
-import { DEFAULT_STATE, SCALE_CONFIG, STORAGE_KEY, QUEST_STORAGE_KEY, QUEST_ESTADOS, QUEST_PROGRESS_BASE, PROGRESS_STORAGE_KEY, MICHI_STORAGE_KEY, INVENTORY_STORAGE_KEY } from "./config.js";
+import { DEFAULT_STATE, SCALE_CONFIG, STORAGE_KEY, QUEST_STORAGE_KEY, QUEST_ESTADOS, QUEST_PROGRESS_BASE, PROGRESS_STORAGE_KEY, MICHI_STORAGE_KEY, INVENTORY_STORAGE_KEY, MICHI_NAME_MAX_LENGTH } from "./config.js";
 import { ITEM_POOL } from "./items.config.js";
 
 export const state = { ...DEFAULT_STATE };
@@ -28,6 +28,9 @@ export function loadState() {
     state.shadow = validateColor(parsed.shadow) ?? DEFAULT_STATE.shadow;
     state.light = validateColor(parsed.light) ?? DEFAULT_STATE.light;
     state.scale = validateScale(parsed.scale) ?? DEFAULT_STATE.scale;
+    state.nombre = typeof parsed.nombre === "string" && parsed.nombre.trim().length > 0
+      ? parsed.nombre.trim().slice(0, MICHI_NAME_MAX_LENGTH)
+      : DEFAULT_STATE.nombre;
   } catch {
     Object.assign(state, DEFAULT_STATE);
   }
@@ -49,6 +52,10 @@ export function patchState(partial) {
   }
   if (partial.scale !== undefined) {
     state.scale = validateScale(partial.scale) ?? state.scale;
+  }
+  if (partial.nombre !== undefined) {
+    const nombre = String(partial.nombre).trim().slice(0, MICHI_NAME_MAX_LENGTH);
+    state.nombre = nombre.length > 0 ? nombre : state.nombre;
   }
   saveState();
 }
