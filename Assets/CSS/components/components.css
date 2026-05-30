@@ -519,10 +519,8 @@
     width: 100% !important;
 }
 
-/* Forzamos que el texto (ya sea subtext, full-width o hijo único) cruce toda la pantalla */
-.rpg-inventory-grid li:only-child, 
-.rpg-inventory-grid .pixel-subtext,
-.full-width-item {
+/* ¡CORRECCIÓN ACÁ! Solo aplicamos el ancho total al mensaje de texto, NUNCA a los ítems */
+.rpg-inventory-grid .full-width-item {
     grid-column: 1 / -1 !important; 
     text-align: center !important;
     width: 100% !important;
