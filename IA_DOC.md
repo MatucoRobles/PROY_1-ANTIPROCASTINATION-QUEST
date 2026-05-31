@@ -88,7 +88,7 @@ También aprendi a revisar el código que genera la IA antes de aceptarlo. Vario
 
 - **Agustín**: arquitectura JS modular (el flujo completo de `state` → `render` → `event`), sistema de pixel art con `box-shadow`, sistema de quests con localStorage, sistema de recompensas, cofre e inventario.
 - **Matias**: Estructura del HTML y una version inicial del CSS, Integracion del sistema codificacion HASH de los atributos del "Michi" y el sistema de combate y su balanceo (daño de armas y sistema de defensa). Tambien me encargue bastante de la parte estetica de la pagina ARENA.
-
+- **Fiorella**: Me encargué de definir y estandarizar la paleta de colores del proyecto mediante variables CSS asegurando la coherencia estética en todos los componentes.Desarrollé la arquitectura visual de la página de personalización, organizando los slots de equipamiento y la jerarquía de los elementos para asegurar una UX intuitiva.    
 ---
 
 ## 9. ¿Qué decisiones tomó el grupo sin depender de la IA?
@@ -100,6 +100,9 @@ También aprendi a revisar el código que genera la IA antes de aceptarlo. Vario
 
 **Matias**
 - Sistema de emparejamiento por HASH.
+**Fiorella**
+- Definir la identidad visual y la paleta cromática, descartando las sugerencias de la IA que no cumplían con los estándares de accesibilidad y contraste que buscábamos.  
+- Establecer la estructura final del layout en la vista del Michi, priorizando tamaños fijos (140px) en los slots de equipamiento para evitar que el diseño se rompiera al renderizar los distintos ítems. 
 
 ---
 
@@ -108,3 +111,5 @@ También aprendi a revisar el código que genera la IA antes de aceptarlo. Vario
 Sí. El caso más claro fue el sistema de ítems equipados sobre el gato: Claude propuso renderizarlos con el mismo sistema de `box-shadow` con paletas de colores propias por ítem. MiniMax lo implementó, pero el resultado era demasiado complejo de mantener y visualmente forzado. Decidi descartar todo ese sistema y reemplazarlo por PNG posicionados con CSS — más simple y con mejor resultado visual.
 
 También descarte la Web Animations API para las animaciones de combate.
+
+También rechacé la implementación de animaciones complejas en los slots de inventario sugeridas por la IA, ya que afectaban el rendimiento móvil y distraían del objetivo funcional del sitio.  
