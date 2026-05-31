@@ -201,6 +201,40 @@ export function renderRewardModal(item, autoEquipped, onEquip) {
   document.body.appendChild(overlay);
 }
 
+export function renderAlertModal(message, modalTitle = "¡ATENCIÓN!") {
+  const existing = document.querySelector(".alert-overlay");
+  if (existing) existing.remove();
+
+  const overlay = document.createElement("div");
+  overlay.className = "alert-overlay rpg-modal-overlay";
+
+  const modalBox = document.createElement("div");
+  modalBox.className = "reward-modal rpg-modal-box";
+
+  const title = document.createElement("h3");
+  title.className = "rpg-box-title";
+  title.textContent = modalTitle;
+
+  const messageP = document.createElement("p");
+  messageP.textContent = message;
+  messageP.style.marginBottom = "var(--space-md)";
+
+  const closeBtn = document.createElement("button");
+  closeBtn.className = "btn-pixel btn-red";
+  closeBtn.textContent = "ENTENDIDO";
+  closeBtn.addEventListener("click", () => overlay.remove());
+
+  const buttonsDiv = document.createElement("div");
+  buttonsDiv.appendChild(closeBtn);
+
+  modalBox.appendChild(title);
+  modalBox.appendChild(messageP);
+  modalBox.appendChild(buttonsDiv);
+  
+  overlay.appendChild(modalBox);
+  document.body.appendChild(overlay);
+}
+
 export function getIconImg(iconKey, alt, width = 14, height = 14) {
   const src = ICON_IMG_MAP[iconKey];
   if (!src) return "";

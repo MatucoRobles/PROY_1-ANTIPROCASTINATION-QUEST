@@ -3,6 +3,7 @@ import { exportMichiCode, importMichiCode, importMichiHash } from "./customizati
 import { simulateBattle } from "./combat.js";
 import { PIXEL_MAPS, COLOR_INDICES } from "./config.js";
 import { arena, dynamicElements } from "./dom.js";
+import { renderAlertModal } from "./render.js";
 
 // Renderiza el sprite del michi rival en la arena
 function renderRivalCat(rival) {
@@ -139,7 +140,7 @@ if (btnLoad) {
       rival = importMichiHash(code);
     }
     if (!rival) {
-      alert("Código inválido o corrupto");
+      renderAlertModal("Código inválido o corrupto", "ERROR DE CARGA");
       return;
     }
     rivalMichi = rival;
@@ -154,7 +155,7 @@ if (btnLoad) {
 if (btnStart) {
   btnStart.addEventListener("click", async () => {
     if (!rivalMichi) {
-      alert("Primero carga un rival.");
+      renderAlertModal("Primero carga un código de rival en el formulario superior.", "RIVAL NO ENCONTRADO");
       return;
     }
     btnStart.disabled = true;
