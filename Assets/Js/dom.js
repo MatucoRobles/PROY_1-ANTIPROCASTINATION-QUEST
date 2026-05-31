@@ -35,6 +35,30 @@ export const stats = Object.freeze({
 });
 
 export const petForm = Object.freeze({
+  form: document.querySelector("#pet-custom-form"),
   nombre: document.querySelector("#pet-name"),
   btnSave: document.querySelector("#btn-save-michi"),
+});
+
+export const personalization = Object.freeze({
+  btnExport: document.querySelector("#btn-export-code"),
+  outputContainer: document.querySelector("#export-output"),
+  inputCode: document.querySelector("#generated-code"),
+});
+
+export const arena = Object.freeze({
+  inputCode: document.querySelector("#opponent-code-input"),
+  btnLoad: document.querySelector("#btn-load-opponent"),
+  btnStart: document.querySelector("#btn-start-simulation"),
+  logOutput: document.querySelector("#battle-log-output"),
+  localName: document.querySelector("#local-name"),
+  opponentName: document.querySelector("#opponent-name"),
+  localHpBar: document.querySelector("#local-hp-bar"),
+  opponentHpBar: document.querySelector("#opponent-hp-bar"),
+  localHpText: document.querySelector("#local-hp-text"),
+  opponentHpText: document.querySelector("#opponent-hp-text"),
+  rivalHead: document.querySelector(".player-opponent .head"),
+  rivalBody: document.querySelector(".player-opponent .body-cat"),
+  rivalPaw: document.querySelector(".player-opponent .paw"),
+  rivalContainer: document.querySelector(".player-opponent .fighter-sprite-display"),
 });

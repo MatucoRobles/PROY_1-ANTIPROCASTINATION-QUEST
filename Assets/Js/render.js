@@ -293,7 +293,82 @@ export function renderTabs(activeFilter) {
   });
 }
 
-// --- RENDERIZADO DE LA UI DE EQUIPAMIENTO E INVENTARIO ---
+// --- RENDERIZADO DE LA ARENA ---
+
+export function renderRivalCat(rival) {
+  const { rivalHead, rivalBody, rivalPaw, rivalContainer } = arena;
+  
+  const colors = {
+    0: "transparent",
+    1: "#000000",
+    2: "#ffffff",
+    3: rival.primary || "#ffb347",
+    4: rival.shadow || "#e6953b",
+    5: rival.light || "#ffd08a",
+    6: "#ff6b6b",
+  };
+
+  let pixelSize = 8;
+  if (rivalContainer) {
+    const calculated = Math.floor(rivalContainer.offsetWidth / PIXEL_MAPS.CAT_HEAD_COLS);
+    pixelSize = Math.max(4, Math.min(calculated, 32));
+    rivalContainer.style.setProperty("--pixel-size", `${pixelSize}px`);
+  }
+
+  if (rivalHead) {
+    renderPixelArt(rivalHead, PIXEL_MAPS.CAT_HEAD, PIXEL_MAPS.CAT_HEAD_COLS, pixelSize, colors);
+  }
+  if (rivalBody) {
+    renderPixelArt(rivalBody, PIXEL_MAPS.CAT_BODY, PIXEL_MAPS.CAT_BODY_COLS, pixelSize, colors);
+  }
+  if (rivalPaw) {
+    renderPixelArt(rivalPaw, PIXEL_MAPS.CAT_PAWS, PIXEL_MAPS.CAT_PAWS_COLS, pixelSize, colors);
+  }
+
+  if (rivalContainer && rival.equipped) {
+    const existing = rivalContainer.querySelectorAll(".equipped-item");
+    existing.forEach(e => e.remove());
+
+    const slots = ["weapon", "armor", "hat"];
+    slots.forEach((slot) => {
+      const item = rival.equipped[slot];
+      if (!item) return;
+      const img = document.createElement("img");
+      img.src = item.img;
+      img.alt = item.nombre;
+      img.className = `equipped-item equipped-${slot}`;
+      img.dataset.slot = slot;
+      rivalContainer.appendChild(img);
+    });
+  }
+}
+
+export function logBattle(msg) {
+  if (!arena.logOutput) return;
+  const p = document.createElement("p");
+  p.className = "log-line";
+  p.textContent = "> " + msg;
+  arena.logOutput.appendChild(p);
+  arena.logOutput.scrollTop = arena.logOutput.scrollHeight;
+}
+
+export function clearLog() {
+  if (!arena.logOutput) return;
+  arena.logOutput.innerHTML = '<p class="log-line system">> Sistema listo. Esperando inicio de combate...</p>';
+}
+
+export function renderArenaHP(localHP, rivalHP, localMax, rivalMax) {
+  if (arena.localHpBar) arena.localHpBar.style.width = `${(localHP / localMax) * 100}%`;
+  if (arena.opponentHpBar) arena.opponentHpBar.style.width = `${(rivalHP / rivalMax) * 100}%`;
+  if (arena.localHpText) arena.localHpText.textContent = `${localHP}/${localMax} HP`;
+  if (arena.opponentHpText) arena.opponentHpText.textContent = `${rivalHP}/${rivalMax} HP`;
+}
+
+export function renderArenaOpponentName(name) {
+  if (arena.opponentName) {
+    arena.opponentName.textContent = name;
+  }
+}
 
 export function renderEquipmentUI() {
   const slots = ["hat", "weapon", "armor"];
