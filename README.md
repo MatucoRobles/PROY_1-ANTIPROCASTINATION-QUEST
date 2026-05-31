@@ -32,8 +32,7 @@ A gamified task manager with RPG mechanics: complete missions to earn rewards, e
 - Three pages: quest board (`index.html`), customization (`personalization_page.html`), arena (`arena_page.html`)
 
 ## Deploy Link
-<!-- TODO: Add deploy URL -->
-
+[Link a la web](https://antiprocastinationquest.netlify.app/)
 ## Repository Link
 https://github.com/MatucoRobles/PROY_1-ANTIPROCASTINATION-QUEST
 
