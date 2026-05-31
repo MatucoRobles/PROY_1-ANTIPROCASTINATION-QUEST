@@ -1,6 +1,7 @@
 import { patchState, addQuest, loadQuests, completeQuest, deleteQuest, incrementCompletadas, filterQuests, openChest, equipItem } from "./state.js";
-import { renderAll, renderCssVariables, renderCat, renderQuestList, renderProgress, renderTabs, renderEquippedItems, renderStats, renderRewardModal } from "./render.js";
-import { inputs, modal, questList, btnOpenChest } from "./dom.js";
+import { renderAll, renderCssVariables, renderCat, renderQuestList, renderProgress, renderTabs, renderEquippedItems, renderStats, renderRewardModal, renderEquipmentUI, renderInventoryUI } from "./render.js";
+import { inputs, modal, questList, btnOpenChest, tabsContainer, inventory } from "./dom.js";
+import { ITEM_POOL } from "./items.config.js";
 
 export function bindEvents() {
   if (inputs.primary) {
@@ -76,7 +77,6 @@ export function bindEvents() {
     });
   }
 
-  const tabsContainer = document.querySelector(".rpg-tabs");
   if (tabsContainer) {
     tabsContainer.addEventListener("click", (e) => {
       const target = e.target;
@@ -101,6 +101,23 @@ export function bindEvents() {
         renderEquippedItems();
         renderStats();
       });
+    });
+  }
+
+  if (inventory.grid) {
+    inventory.grid.addEventListener("click", (e) => {
+      const li = e.target.closest(".rpg-item-slot");
+      if (!li) return;
+      const id = li.dataset.id;
+      if (!id) return;
+      const item = ITEM_POOL.find(i => i.id === id);
+      if (item) {
+        equipItem(item);
+        renderEquipmentUI();
+        renderEquippedItems();
+        renderStats();
+        renderInventoryUI();
+      }
     });
   }
 }

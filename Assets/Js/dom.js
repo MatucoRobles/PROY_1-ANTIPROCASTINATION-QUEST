@@ -62,3 +62,28 @@ export const arena = Object.freeze({
   rivalPaw: document.querySelector(".player-opponent .paw"),
   rivalContainer: document.querySelector(".player-opponent .fighter-sprite-display"),
 });
+
+export const progress = Object.freeze({
+  bar: document.querySelector("#main-progress-bar"),
+  text: document.querySelector("#progress-text"),
+});
+
+export const inventory = Object.freeze({
+  grid: document.querySelector("#inventory-grid"),
+});
+
+export const tabsContainer = document.querySelector(".rpg-tabs");
+
+export const dynamicElements = Object.freeze({
+  getRewardOverlay: () => document.querySelector(".reward-overlay"),
+  getEquippedItem: (slot) => document.querySelector(`.equipped-item[data-slot="${slot}"]`),
+  getSlotContainer: (slotType) => document.querySelector(`#slot-${slotType}-container`),
+  getInventoryFullMsg: (container) => container.querySelector(".inventory-full-msg"),
+  getAllTabs: () => document.querySelectorAll(".tab-item"),
+  getAllMichiNames: () => document.querySelectorAll(".michi-name-display"),
+  getAllWrappers: () => document.querySelectorAll(".player-local .cat-wrapper, .player-opponent .cat-wrapper"),
+  getLocalWrapper: () => document.querySelector(".player-local .cat-wrapper"),
+  getOpponentWrapper: () => document.querySelector(".player-opponent .cat-wrapper"),
+  getOpponentEquippedItems: () => document.querySelectorAll(".player-opponent .fighter-sprite-display .equipped-item"),
+  getPixel: (container) => container.querySelector(".pixel"),
+});

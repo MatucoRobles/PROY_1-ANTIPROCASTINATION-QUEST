@@ -1,6 +1,6 @@
 import { PIXEL_MAPS, COLOR_INDICES, CSS_VARS, PIXEL_SIZE_CONFIG, CAT_MAX_COLS, QUEST_BADGE_ICONS, ICON_IMG_MAP } from "./config.js";
-import { state, getProgress, michiState, isInventoryFull, loadInventory, equipItem } from "./state.js"; 
-import { elements, questList, btnOpenChest, catWrapper, stats } from "./dom.js";
+import { state, getProgress, michiState, isInventoryFull, loadInventory } from "./state.js"; 
+import { elements, questList, btnOpenChest, catWrapper, stats, dynamicElements, progress, arena, inventory, tabsContainer } from "./dom.js";
 import { ITEM_POOL } from "./items.config.js";
 const COLORS = {
   0: "transparent",
@@ -39,7 +39,7 @@ function createBoxShadow(pixels, cols, pixelSize, colorsMap = COLORS) {
 }
 
 function renderPixelArt(container, pixels, cols, pixelSize, colorsMap = COLORS) {
-  const pixel = container.querySelector(".pixel");
+  const pixel = dynamicElements.getPixel(container);
   if (!pixel) return;
 
   if (!pixelSize || isNaN(pixelSize) || pixelSize <= 0) {
@@ -98,7 +98,7 @@ export function updateAriaLabel() {
 }
 
 export function renderMichiName() {
-  const nameEls = document.querySelectorAll(".michi-name-display");
+  const nameEls = dynamicElements.getAllMichiNames();
   nameEls.forEach(el => el.textContent = state.nombre);
 }
 
@@ -116,7 +116,7 @@ export function renderEquippedItems() {
   const slots = ["weapon", "armor", "hat"];
   slots.forEach((slot) => {
     const item = michiState.equipped[slot];
-    const existing = document.querySelector(`.equipped-item[data-slot="${slot}"]`);
+    const existing = dynamicElements.getEquippedItem(slot);
     if (existing) existing.remove();
     if (!item) return;
 
@@ -137,7 +137,7 @@ export function renderStats() {
 }
 
 export function renderRewardModal(item, autoEquipped, onEquip) {
-  const existing = document.querySelector(".reward-overlay");
+  const existing = dynamicElements.getRewardOverlay();
   if (existing) existing.remove();
 
   const overlay = document.createElement("div");
@@ -249,8 +249,8 @@ export function renderQuestList(quests) {
 
 export function renderProgress() {
   const { completadas, porcentaje, cofresDisponibles } = getProgress();
-  const progressBar = document.querySelector("#main-progress-bar");
-  const progressText = document.querySelector("#progress-text");
+  const progressBar = progress.bar;
+  const progressText = progress.text;
 
   if (progressBar) {
     progressBar.style.width = `${porcentaje}%`;
@@ -266,7 +266,7 @@ export function renderChestButton(cofresDisponibles) {
   const container = btn?.parentElement;
   if (!btn || !container) return;
 
-  const existing = container.querySelector(".inventory-full-msg");
+  const existing = dynamicElements.getInventoryFullMsg(container);
   if (existing) existing.remove();
 
   if (isInventoryFull()) {
@@ -283,7 +283,7 @@ export function renderChestButton(cofresDisponibles) {
 }
 
 export function renderTabs(activeFilter) {
-  const tabs = document.querySelectorAll(".tab-item");
+  const tabs = dynamicElements.getAllTabs();
   tabs.forEach((tab) => {
     if (tab.dataset.filter === activeFilter) {
       tab.classList.add("active");
@@ -326,7 +326,7 @@ export function renderRivalCat(rival) {
   }
 
   if (rivalContainer && rival.equipped) {
-    const existing = rivalContainer.querySelectorAll(".equipped-item");
+    const existing = dynamicElements.getOpponentEquippedItems();
     existing.forEach(e => e.remove());
 
     const slots = ["weapon", "armor", "hat"];
@@ -374,7 +374,7 @@ export function renderEquipmentUI() {
   const slots = ["hat", "weapon", "armor"];
   
   slots.forEach(slotType => {
-      const container = document.querySelector(`#slot-${slotType}-container`);
+      const container = dynamicElements.getSlotContainer(slotType);
       if (!container) return; 
       
       const item = michiState.equipped[slotType];
@@ -394,7 +394,7 @@ export function renderEquipmentUI() {
 }
 
 export function renderInventoryUI() {
-  const grid = document.querySelector("#inventory-grid");
+  const grid = inventory.grid;
   if (!grid) return; 
 
   const inventoryIds = loadInventory();
@@ -411,6 +411,7 @@ export function renderInventoryUI() {
 
       const li = document.createElement("li");
       li.className = "rpg-item-slot pixel-border-inner";
+      li.dataset.id = id;
       
       const isEquipped = Object.values(michiState.equipped).some(eq => eq && eq.id === id);
       if (isEquipped) {
@@ -423,14 +424,6 @@ export function renderInventoryUI() {
               <img src="${item.img}" title="${item.nombre}" alt="${item.nombre}" class="slot-item-img inventory-item-img">
           </div>
       `;
-      
-      li.addEventListener("click", () => {
-          equipItem(item); 
-          renderEquipmentUI(); 
-          renderEquippedItems(); 
-          renderStats(); 
-          renderInventoryUI(); 
-      });
       
       grid.appendChild(li);
   });
