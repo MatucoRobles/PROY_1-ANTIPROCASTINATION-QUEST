@@ -39,16 +39,16 @@ Al inicio del proyecto también fue muy útil el prompt de refactor CSS que sepa
 adjunto pruebas que me perisiguen en mis sueños:
 
 #### Gato creado por Claude
-![Gato creado por Claude](imgs/claude.png)
+![Gato creado por Claude](ia-imgs/claude.png)
 
 #### Gato creado por Claude segundo intento
-![Gato creado por Claude segundo intento](imgs/claude2.png)
+![Gato creado por Claude segundo intento](ia-imgs/claude2.png)
 
 #### Gato creado por ChatGpt
-![Gato creado por ChatGpt](imgs/chatgpt.png)
+![Gato creado por ChatGpt](ia-imgs/chatgpt.png)
 
 #### Gato creado por MiniMax
-![Gato creado por MiniMax](imgs/minimax.png)
+![Gato creado por MiniMax](ia-imgs/minimax.png)
 
 ---
 
@@ -97,7 +97,6 @@ También aprendi a revisar el código que genera la IA antes de aceptarlo. Vario
 - El diseño visual de todos los sprites e íconos PNG — hechos a mano en un editor de pixel art.
 - La decisión de usar el flujo de SDDs en lugar de pedirle código directamente a MiniMax.
 - Separar `items.config.js` de `config.js` para no mezclar responsabilidades.
-
 **Matias**
 - Sistema de emparejamiento por HASH.
 **Fiorella**
