@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anti-Procrastination Quest - Arena</title>
+    <link rel="stylesheet" href="../Assets/CSS/main.css">
+    <link rel="icon" href="../Assets/Images/favicon.ico" type="image/x-icon">
+</head>
+<body class="rpg-theme-dark">
+
+    <header class="rpg-navbar">
+        <h1 class="pixel-text-blink">⚔️ Anti-Procrastination Quest ⚔️</h1>
+        <nav class="rpg-nav">
+            <ul>
+                <li><a href="../index.html" class="rpg-nav-link">TABLÓN</a></li>
+                <li><a href="personalization_page.html" class="rpg-nav-link">TU MICHI</a></li>
+                <li><a href="arena_page.html" class="rpg-nav-link active">ARENA</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="rpg-main-container battle-layout">
+        
+        <section id="battle-arena" class="rpg-arena-frame">
+            <fieldset class="battlefield-screen pixel-border-inner">
+                <legend class="hidden">Pantalla de Combate</legend>
+                
+                <article class="arena-fighter player-local">
+                    <h3 id="local-name" class="fighter-tag michi-name-display">PLAYER_ONE</h3>
+                    <div class="cat-wrapper fighter-sprite-display" aria-label="Gato pixel art">
+                        <div class="head">
+                            <div class="pixel"></div>
+                        </div>
+                        <div class="body-cat">
+                            <div class="pixel"></div>
+                            <div class="paw">
+                                <div class="pixel"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <footer class="fighter-health-zone">
+                        <div class="rpg-progress-frame health-frame">
+                            <span id="local-hp-bar" class="rpg-progress-fill health-fill" style="width: 100%;"></span>
+                        </div>
+                        <span id="local-hp-text" class="hp-numeric-display">100/100 HP</span>
+                    </footer>
+                </article>
+                
+                <span class="versus-shield">VS</span>
+                
+                <article class="arena-fighter player-opponent">
+                    <h3 id="opponent-name" class="fighter-tag">RIVAL_MICHI</h3>
+                    <div class="cat-wrapper fighter-sprite-display" aria-label="Gato pixel art">
+                        <div class="head">
+                            <div class="pixel"></div>
+                        </div>
+                        <div class="body-cat">
+                            <div class="pixel"></div>
+                            <div class="paw">
+                                <div class="pixel"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <footer class="fighter-health-zone">
+                        <div class="rpg-progress-frame health-frame">
+                            <span id="opponent-hp-bar" class="rpg-progress-fill health-fill" style="width: 100%;"></span>
+                        </div>
+                        <span id="opponent-hp-text" class="hp-numeric-display">100/100 HP</span>
+                    </footer>
+                </article>
+            </fieldset>
+
+            <footer class="arena-action-trigger">
+                <button id="btn-start-simulation" class="btn-pixel btn-red massive-button">⚡ INICIAR SIMULACIÓN AUTOMÁTICA ⚡</button>
+            </footer>
+        </section>
+
+        <section class="battle-layout-bottom-row" aria-label="Controles del sistema e historial">
+            
+            <form id="search-opponent-form" class="rpg-box setup-match-box">
+                <h2 class="rpg-box-title" style="font-size: 20px; margin-bottom: 4px;">⚔️ DESAFIAR</h2>
+                <label for="opponent-code-input" class="pixel-subtext">Ingresá el HASH del gato rival:</label>
+                <p class="rpg-input-action-group">
+                    <input type="text" id="opponent-code-input" class="pixel-input" placeholder="Pegar código...">
+                    <button type="submit" id="btn-load-opponent" class="btn-pixel btn-yellow">CARGAR RIVAL</button>
+                </p>
+            </form>
+
+            <section class="rpg-box combat-log-card">
+                <h3 class="pixel-heading" style="font-size: 20px; margin-bottom: 4px;">> INFORME DE ARENA</h3>
+                <output id="battle-log-output" class="terminal-log-output">
+                    <p class="log-line system">> Sistema listo. Esperando inicio de combate...</p>
+                </output>
+            </section>
+
+        </section>
+    </main>
+
+    <script type="module" src="../Assets/Js/main.js"></script>
+    <script type="module" src="../Assets/Js/arena.js"></script>
+</body>
+</html>

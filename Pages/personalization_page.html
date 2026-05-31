@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anti-Procrastination Quest - Custom Michi</title>
+    <link rel="stylesheet" href="../Assets/CSS/main.css">
+    <link rel="icon" href="../Assets/Images/favicon.ico" type="image/x-icon">
+</head>
+<body class="rpg-theme-dark">
+
+    <header class="rpg-navbar">
+        <h1 class="pixel-text-blink">⚔️ Anti-Procrastination Quest ⚔️</h1>
+        <nav class="rpg-nav">
+            <ul>
+                <li><a href="../index.html" class="rpg-nav-link">TABLÓN</a></li>
+                <li><a href="personalization_page.html" class="rpg-nav-link active">TU MICHI</a></li>
+                <li><a href="arena_page.html" class="rpg-nav-link">ARENA</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="rpg-main-container">
+        
+        <section class="editor-pane" aria-label="Editor de Aspecto">
+            
+            <form id="pet-custom-form" class="rpg-box rpg-form">
+                <h2 class="rpg-box-title">⚙️ CONFIGURAR COMPAÑERO</h2>
+                
+                <p class="rpg-form-group">
+                    <label for="pet-name">> APODO:</label>
+                    <input type="text" id="pet-name" class="pixel-input" maxlength="20" placeholder="Ej: MichiZ">
+                </p>
+
+                <p class="rpg-form-group">
+                    <label for="cat-primary">> COLOR PRINCIPAL:</label>
+                    <input type="color" id="cat-primary" class="pixel-color-picker" value="#ffb347">
+                </p>
+
+                <p class="rpg-form-group">
+                    <label for="cat-shadow">> COLOR SOMBRA:</label>
+                    <input type="color" id="cat-shadow" class="pixel-color-picker" value="#e6953b">
+                </p>
+
+                <p class="rpg-form-group">
+                    <label for="cat-light">> COLOR REFLEJO:</label>
+                    <input type="color" id="cat-light" class="pixel-color-picker" value="#ffd08a">
+                </p>
+
+                <button type="submit" id="btn-save-michi" class="btn-pixel btn-green block-button">GUARDAR MATRIZ</button>
+            </form>
+
+            <section class="rpg-box live-preview-panel">
+                <h3 class="pixel-heading">PANTALLA DE INSPECCIÓN</h3>
+                <figure id="custom-pet-preview" class="michi-large-display pixel-border-inner">
+                    <div class="cat-wrapper" aria-label="Gato pixel art">
+                        <div class="head">
+                            <div class="pixel"></div>
+                        </div>
+                        <div class="body-cat">
+                            <div class="pixel"></div>
+                            <div class="paw">
+                                <div class="pixel"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <span id="equipped-hat-visual" class="pixel-sprite-overlay"></span>
+                    <span id="equipped-weapon-visual" class="pixel-sprite-overlay"></span>
+                </figure>
+                
+                <section class="rpg-stats-summary pixel-border-inner">
+                    <h4 id="display-pet-name" class="michi-name-display">STAT_VALUES</h4>
+                    <ul>
+                        <li>HP_MAX: <span id="stat-hp" class="text-green">100</span></li>
+                        <li>ATK_POWER: <span id="stat-atk" class="text-orange">15</span></li>
+                        <li>DEF_RATING: <span id="stat-def" class="text-blue">12</span></li>
+                    </ul>
+                </section>
+
+                <footer class="rpg-export-container pixel-border-inner">
+                    <button id="btn-export-code" class="btn-pixel btn-blue small">📤 EXPORTAR HASH</button>
+                    <p id="export-output" class="hidden">
+                        <input type="text" id="generated-code" class="pixel-input text-center" readonly>
+                    </p>
+                </footer>
+            </section>
+        </section>
+
+        <section class="inventory-pane" aria-label="Inventario de Objetos">
+            
+            <section class="rpg-box">
+                <h2 class="rpg-box-title">🛡️ EQUIPAMIENTO ACTUAL</h2>
+                <ul class="rpg-slots-wrapper">
+                    <li class="rpg-item-slot pixel-border-inner" data-slot="hat">
+                        <span class="slot-title">CABEZA</span>
+                        <div id="slot-hat-container" class="slot-icon-container">
+                            <span id="slot-hat-current" class="slot-status empty">VACÍO</span>
+                        </div>
+                    </li>
+
+                    <li class="rpg-item-slot pixel-border-inner" data-slot="weapon">
+                        <span class="slot-title">ARMA</span>
+                        <div id="slot-weapon-container" class="slot-icon-container">
+                            <span id="slot-weapon-current" class="slot-status empty">VACÍO</span>
+                        </div>
+                    </li>
+
+                    <li class="rpg-item-slot pixel-border-inner" data-slot="armor">
+                        <span class="slot-title">PECHO</span>
+                        <div id="slot-armor-container" class="slot-icon-container">
+                            <span id="slot-armor-current" class="slot-status empty">VACÍO</span>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+            
+            <section class="rpg-box">
+                <h2 class="rpg-box-title">🎒 ALMACÉN / INVENTARIO</h2>
+                <ul id="inventory-grid" class="rpg-inventory-grid">
+                    <li class="pixel-subtext text-center">Sin artefactos en la mochila. ¡Completa misiones para farmear equipamiento!</li>
+                </ul>
+            </section>
+        </section>
+
+    </main>
+
+    <script type="module" src="../Assets/Js/main.js"></script>
+    <script type="module" src="../Assets/Js/personalization.js"></script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+html, body {
+    background-color: var(--bg-dark);
+    color: var(--parchment);
+    font-family: var(--font-pixel);
+    font-size: var(--font-size-base);
+    letter-spacing: var(--letter-spacing-base);
+    min-height: 100vh;
+    padding-bottom: var(--space-3xl);
+    image-rendering: pixelated;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--inner-bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--parchment-dim);
+    border: 2px solid var(--inner-bg);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--gold);
+}
+
+::selection {
+    background-color: var(--gold);
+    color: var(--color-black);
+}
+
+:focus-visible {
+    outline: var(--border-width-sm) solid var(--gold);
+    outline-offset: 2px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-green {
+    color: var(--color-success);
+}
+
+.text-orange {
+    color: var(--color-warning);
+}
+
+.text-blue {
+    color: var(--color-info);
+}
