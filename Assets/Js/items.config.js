@@ -18,16 +18,16 @@ const createItem = (id, nombre, slot, stat, img, bonus = 1) => ({
 });
 
 export const WEAPONS = Object.freeze([
-  createItem("sword_iron", "Espada de Hierro", ITEM_SLOTS.WEAPON, "atk", WEAPON_FOLDER + "sword_iron.png", 2),
-  createItem("wooden_staff", "Baculo de Hechizero", ITEM_SLOTS.WEAPON, "atk", WEAPON_FOLDER + "wooden_staff.png", 1),
-  createItem("iron_axe", "Hacha de Hierro", ITEM_SLOTS.WEAPON, "atk", WEAPON_FOLDER + "iron_axe.png", 3),
-  createItem("iron_mace", "Maza de Hierro", ITEM_SLOTS.WEAPON, "atk", WEAPON_FOLDER + "iron_mace.png", 2),
-  createItem("iron_malet", "Martillo de Hierro", ITEM_SLOTS.WEAPON, "atk", WEAPON_FOLDER + "iron_malet.png", 4),
-  createItem("iron_sickle", "Hoz de Hierro", ITEM_SLOTS.WEAPON, "atk", WEAPON_FOLDER + "iron_sickle.png", 2),
-  createItem("light_staff", "Baculo de Luz", ITEM_SLOTS.WEAPON, "atk", WEAPON_FOLDER + "light_staff.png", 3),
-  createItem("quick_sword", "Espada Rapida", ITEM_SLOTS.WEAPON, "atk", WEAPON_FOLDER + "quick_sword.png", 2),
-  createItem("skull_staff", "Baculo de Craneo", ITEM_SLOTS.WEAPON, "atk", WEAPON_FOLDER + "skull_staff.png", 4),
-  createItem("sky_sword", "Espada del Cielo", ITEM_SLOTS.WEAPON, "atk", WEAPON_FOLDER + "sky_sword.png", 5),
+  createItem("sword_iron", "Espada de Hierro", ITEM_SLOTS.WEAPON, "atk", WEAPON_FOLDER + "sword_iron.png", 6),
+  createItem("wooden_staff", "Baculo de Hechizero", ITEM_SLOTS.WEAPON, "atk", WEAPON_FOLDER + "wooden_staff.png", 3),
+  createItem("iron_axe", "Hacha de Hierro", ITEM_SLOTS.WEAPON, "atk", WEAPON_FOLDER + "iron_axe.png", 9),
+  createItem("iron_mace", "Maza de Hierro", ITEM_SLOTS.WEAPON, "atk", WEAPON_FOLDER + "iron_mace.png", 6),
+  createItem("iron_malet", "Martillo de Hierro", ITEM_SLOTS.WEAPON, "atk", WEAPON_FOLDER + "iron_malet.png", 12),
+  createItem("iron_sickle", "Hoz de Hierro", ITEM_SLOTS.WEAPON, "atk", WEAPON_FOLDER + "iron_sickle.png", 6),
+  createItem("light_staff", "Baculo de Luz", ITEM_SLOTS.WEAPON, "atk", WEAPON_FOLDER + "light_staff.png", 9),
+  createItem("quick_sword", "Espada Rapida", ITEM_SLOTS.WEAPON, "atk", WEAPON_FOLDER + "quick_sword.png", 6),
+  createItem("skull_staff", "Baculo de Craneo", ITEM_SLOTS.WEAPON, "atk", WEAPON_FOLDER + "skull_staff.png", 12),
+  createItem("sky_sword", "Espada del Cielo", ITEM_SLOTS.WEAPON, "atk", WEAPON_FOLDER + "sky_sword.png", 15),
 ]);
 
 export const ARMORS = Object.freeze([

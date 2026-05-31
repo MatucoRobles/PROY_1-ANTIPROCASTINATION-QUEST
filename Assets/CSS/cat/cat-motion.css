@@ -39,4 +39,96 @@
         transform: rotate(0deg);
     }
 }
- */
+*/
+
+/* HIT — shake + flash rojo */
+@keyframes hit-shake {
+    0%   { transform: translateX(0); filter: brightness(1); }
+    20%  { transform: translateX(-6px); filter: brightness(2) sepia(1) hue-rotate(-30deg); }
+    40%  { transform: translateX(6px); filter: brightness(2) sepia(1) hue-rotate(-30deg); }
+    60%  { transform: translateX(-4px); filter: brightness(1.5); }
+    80%  { transform: translateX(4px); }
+    100% { transform: translateX(0); filter: brightness(1); }
+}
+
+/* ATTACK — lunge hacia el rival */
+@keyframes attack-lunge {
+    0%   { transform: translateX(0); }
+    40%  { transform: translateX(20px); }
+    100% { transform: translateX(0); }
+}
+
+/* WIN — bounce + brillo dorado */
+@keyframes win-bounce {
+    0%, 100% { transform: translateY(0); filter: brightness(1); }
+    30%  { transform: translateY(-12px); filter: brightness(1.5) sepia(0.5) hue-rotate(10deg); }
+    60%  { transform: translateY(-6px); }
+}
+
+/* LOSE — fade + caída */
+@keyframes lose-fall {
+    0%   { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(20px); opacity: 0.3; }
+}
+
+.anim-hit {
+    animation: hit-shake 0.4s ease forwards;
+}
+
+.anim-attack {
+    animation: attack-lunge 0.4s ease forwards;
+}
+
+.anim-win {
+    animation: win-bounce 0.6s ease infinite;
+}
+
+.anim-lose {
+    animation: lose-fall 0.5s ease forwards;
+}
+
+.player-opponent .anim-attack {
+    animation: none;
+}
+
+@keyframes attack-lunge-rival {
+    0%   { transform: scaleX(-1) translateX(0); }
+    40%  { transform: scaleX(-1) translateX(-20px); }
+    100% { transform: scaleX(-1) translateX(0); }
+}
+
+.player-opponent .anim-attack {
+    animation: attack-lunge-rival 0.4s ease forwards;
+}
+
+@keyframes hit-shake-rival {
+    0%   { transform: scaleX(-1) translateX(0);    filter: brightness(1); }
+    20%  { transform: scaleX(-1) translateX(6px);  filter: brightness(2) sepia(1) hue-rotate(-30deg); }
+    40%  { transform: scaleX(-1) translateX(-6px); filter: brightness(2) sepia(1) hue-rotate(-30deg); }
+    60%  { transform: scaleX(-1) translateX(4px);  filter: brightness(1.5); }
+    80%  { transform: scaleX(-1) translateX(-4px); }
+    100% { transform: scaleX(-1) translateX(0);    filter: brightness(1); }
+}
+
+.player-opponent .anim-hit {
+    animation: hit-shake-rival 0.4s ease forwards;
+}
+
+@keyframes win-bounce-rival {
+    0%, 100% { transform: scaleX(-1) translateY(0);     filter: brightness(1); }
+    30%       { transform: scaleX(-1) translateY(-12px); filter: brightness(1.5) sepia(0.5) hue-rotate(10deg); }
+    60%       { transform: scaleX(-1) translateY(-6px); }
+}
+
+.player-opponent .anim-win {
+    animation: win-bounce-rival 0.6s ease infinite;
+}
+
+@keyframes lose-fall-rival {
+    0%   { transform: scaleX(-1) translateY(0);    opacity: 1; }
+    100% { transform: scaleX(-1) translateY(20px); opacity: 0.3; }
+}
+
+.player-opponent .anim-lose {
+    animation: lose-fall-rival 0.5s ease forwards;
+}

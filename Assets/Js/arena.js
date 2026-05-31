@@ -99,6 +99,23 @@ function logBattle(msg) {
 
 function clearLog() {
   logOutput.innerHTML = '<p class="log-line system">> Sistema listo. Esperando inicio de combate...</p>';
+  const wrappers = document.querySelectorAll(".player-local .cat-wrapper, .player-opponent .cat-wrapper");
+  wrappers.forEach(w => w.classList.remove("anim-hit", "anim-attack", "anim-win", "anim-lose"));
+}
+
+function triggerAnim(target, cls) {
+  const wrapper = target === "local"
+    ? document.querySelector(".player-local .cat-wrapper")
+    : document.querySelector(".player-opponent .cat-wrapper");
+  if (!wrapper) return;
+
+  wrapper.classList.remove("anim-hit", "anim-attack", "anim-win", "anim-lose");
+  void wrapper.offsetWidth;
+  wrapper.classList.add(cls);
+
+  if (cls !== "anim-win" && cls !== "anim-lose") {
+    wrapper.addEventListener("animationend", () => wrapper.classList.remove(cls), { once: true });
+  }
 }
 
 function updateHP(localHP, rivalHP, localMax, rivalMax) {
@@ -136,11 +153,12 @@ btnStart.addEventListener("click", async () => {
   btnStart.disabled = true;
   clearLog();
   const localFighter = { ...michiState, hp: michiState.hp || 100, atk: michiState.atk || 10, def: michiState.def || 5 };
-  await simulateBattle(
+  await await simulateBattle(
     localFighter,
     rivalMichi,
     (msg) => logBattle(msg),
-    (localHP, rivalHP) => updateHP(localHP, rivalHP, localFighter.hp, rivalMichi.hp)
+    (localHP, rivalHP) => updateHP(localHP, rivalHP, localFighter.hp, rivalMichi.hp),
+    (target, cls) => triggerAnim(target, cls)
   );
   btnStart.disabled = false;
 });
